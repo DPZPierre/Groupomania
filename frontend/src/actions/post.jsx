@@ -39,7 +39,7 @@ export const addPost = (data) => {
   };
 };
 
-export const likePost = (userId ,postId ) => { 
+export const likePost = (userId ,postId ) => { console.log(userId)
   return (dispatch) => {
     return axios({
       method: "patch",

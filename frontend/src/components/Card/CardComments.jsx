@@ -21,7 +21,7 @@ const CardComments = ({ post }) => {
 
   return (
     <div className="comments-container">
-      {post.comments.map((comment) => {
+      {post.comments.map((comment) => { console.log(comment)
         return (
           <div
             className={
@@ -33,9 +33,6 @@ const CardComments = ({ post }) => {
           >
             <div className="right-part">
               <div className="comment-header">
-                <div className="pseudo">
-                  <h3>{comment.commenterPseudo}</h3>
-                </div>
                 <span>{timestampParser(comment.timestamp)}</span>
               </div>
               <p>{comment.text}</p>

@@ -25,9 +25,11 @@ const NewPostForm = () => {
   const handlePost = async () => {
     if (post || postPicture) {
       const data = new FormData();
+      console.log(data)
       data.append("userId", userData._id);
       data.append("post", post);
       if (file) data.append("file", file);
+
 
       await dispatch(addPost(data));
       dispatch(getPosts());

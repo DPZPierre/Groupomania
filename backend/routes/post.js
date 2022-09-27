@@ -5,7 +5,7 @@ const postsCtrl = require('../controllers/post');
 
 router.get('/', postsCtrl.readPost);
 router.post('/', multer, postsCtrl.createPost);
-router.put('/:id', multer, postsCtrl.updatePost);
+router.put('/:id', postsCtrl.updatePost);
 router.delete('/:id', postsCtrl.deletePost);
 router.patch('/:id/like', postsCtrl.likePost);
 router.patch('/:id/dislike', postsCtrl.disLikePost)

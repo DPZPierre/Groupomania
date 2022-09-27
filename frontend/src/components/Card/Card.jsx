@@ -27,14 +27,14 @@ const Card = ({ post }) => {
   }, [usersData]);
 
   return (
-    <li className="card-container" key={post._id}>
+    <li className="card__container" key={post._id}>
       {isLoading ? (
         <i className="fas fa-spinner fa-spin"></i>
       ) : (
         <>
           <div className="card">
-            <div className="card-header">
-              <div className="pseudo">
+            <div className="card__header">
+              <div className="card__header__email">
                 <h3>
                   {!isEmpty(usersData[0]) &&
                     usersData
@@ -50,13 +50,13 @@ const Card = ({ post }) => {
             </div>
             {isUpdated === false && <p>{post.message}</p>}
             {isUpdated && (
-              <div className="update-post">
+              <div className="update__post">
                 <textarea
                   defaultValue={post.message}
                   onChange={(e) => setTextUpdate(e.target.value)}
                 />
-                <div className="button-container">
-                  <button className="btn" onClick={updateItem}>
+                <div className="update__post__button">
+                  <button className="update__post__button__btn" onClick={updateItem}>
                     Valider modification
                   </button>
                 </div>
@@ -66,18 +66,18 @@ const Card = ({ post }) => {
               <img src={post.picture} alt="card-pic" className="card-pic" />
             )}
             {userData._id === post.userId && (
-              <div className="button-container">
+              <div className="button__container">
                 <div onClick={() => setIsUpdated(!isUpdated)}>
-                  <img src="./img/icons/edit.svg" alt="edit" />
+                  {/* <img src="./img/icons/edit.svg" alt="edit" /> */}
                 </div>
                 <DeleteCard id={post._id} />
               </div>
             )}
-            <div className="card-footer">
-              <div className="comment-icon">
+            <div className="card__footer">
+              <div className="card__footer__comment">
                 <img
                   onClick={() => setShowComments(!showComments)}
-                  src="./img/icons/message1.svg"
+                  // src="./img/icons/message1.svg"
                   alt="comment"
                 />
                 <span>{post.comments.length}</span>
