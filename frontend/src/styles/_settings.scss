@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+$color1: #FD2D01;
+$color2: #FFD7D7;
+$color3: #4E5166;
+$black1: #121111;
+$white: #f0eaea;
+$grey: #5F5F5F;
+$shadow: 0 3px 20px rgba(0, 0, 0, 0.356);
+
+@mixin verticalCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+};
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+};
+
+
+body {
+  // background: $color2;
+  color: $black1;
+};
+
+h3 {
+  color: $black1;
+  padding: 10px;
+}
+
+button,
+input[type="submit"] {
+  background: none;
+  font-size: 18px;
+  border: none;
+  padding: 15px 35px;
+  cursor: pointer;
+  background: $black1;
+  transition: 0.2s;
+  color: $white;
+
+  &:hover {
+    filter: brightness(70%);
+  }
+};
+
+input,
+textarea {
+  border-radius: 7px;
+  width: 90%;
+  border: 2px solid black;
+  resize: none;
+  margin: 5px 5px 25px 5px;
+  padding: 15px;
+  background: $white;
+};
+
+#terms {
+  margin-right: 15px;
+  width: 20px;
+}

@@ -1,0 +1,16 @@
+.connect__modal__container {
+    width: 50%;
+    margin: 40px auto 30px;
+    text-align: center;
+    position: relative;
+    padding: 20px 20px;
+    border-radius: 0 20px 20px 20px;
+    min-height: 250px;
+    box-shadow: $shadow;
+    background-color: $white;
+        &__btn {
+            position: absolute;
+            left: 0;
+            top: -30px;
+        }
+}

@@ -1,0 +1,12 @@
+.app__header{
+    background: $color3;
+    margin-bottom: 100px;
+    &__title{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $white;
+        padding: 30px;
+    }
+   
+}

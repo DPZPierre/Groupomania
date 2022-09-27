@@ -1,0 +1,9 @@
+.nav__container {
+    background: $color3;
+    margin-bottom: 100px;
+    height: 250px;
+    &__logo {
+        display: flex;
+        justify-content: center;
+    }
+}
