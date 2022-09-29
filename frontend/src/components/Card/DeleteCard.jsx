@@ -1,6 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { deletePost } from "../../actions/post";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons"
 
 const DeleteCard = (props) => {
   const dispatch = useDispatch();
@@ -15,7 +17,7 @@ const DeleteCard = (props) => {
         }
       }}
     >
-      <img src="./img/icons/trash.svg" alt="trash" />
+      <FontAwesomeIcon className="icon" icon={faTrash} alt="delete" />
     </div>
   );
 };

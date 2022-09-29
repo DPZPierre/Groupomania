@@ -1,0 +1,29 @@
+.icon{
+    &__logout{
+      position: absolute;
+      bottom: 0;
+      right: 60px;
+      font-size: 22px;
+      color: white;
+      cursor: pointer;
+        &--icon{
+        color: white;
+        position: absolute;
+        justify-content: flex-end;
+        bottom: 0;
+        right: 25px;
+        font-size: 30px;
+        cursor: pointer;
+        }
+    }
+      &--like{
+        color: $color3;
+        padding-right: 10px;
+        cursor: pointer;
+      }
+        &--dislike {
+          color: $color1;
+          padding-left: 10px;
+          cursor: pointer;
+        }
+  }

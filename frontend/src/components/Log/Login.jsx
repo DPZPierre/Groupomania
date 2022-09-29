@@ -24,7 +24,8 @@ const Login = () => {
         if (res.data.error) {
           emailError.innerHTML = res.data.error;
           passwordError.innerHTML = res.data.error;
-        } else {
+        } 
+        else {
           window.location = "/Home";
         }
   })

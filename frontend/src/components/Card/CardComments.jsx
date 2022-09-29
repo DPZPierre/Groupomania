@@ -20,29 +20,29 @@ const CardComments = ({ post }) => {
   };
 
   return (
-    <div className="comments-container">
-      {post.comments.map((comment) => { console.log(comment)
+    <div className="comment__container">
+      {post.comments.map((comment) => {
         return (
           <div
             className={
               comment.commenterId === userData._id
-                ? "comment-container client"
-                : "comment-container"
+                ? "comment__container--client"
+                : "comment__container"
             }
             key={comment._id}
           >
-            <div className="right-part">
-              <div className="comment-header">
-                <span>{timestampParser(comment.timestamp)}</span>
+   
+              <div className="comment__container__header">
+                  <p className="comment__container__header--email">{userData.email}</p>
+                <span className="comment__container__header--date">{timestampParser(comment.timestamp)}</span>
               </div>
-              <p>{comment.text}</p>
+              <p className="comment__container__post">{comment.text}</p>
               <EditDeleteComment comment={comment} postId={post._id} />
             </div>
-          </div>
         );
       })}
       {userData._id && (
-        <form action="" onSubmit={handleComment} className="comment-form">
+        <form action="" onSubmit={handleComment} className="comment__form">
           <input
             type="text"
             name="text"

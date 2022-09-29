@@ -2,6 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteComment, editComment } from "../../actions/post";
 import { UidContext } from "../AppContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
+
 
 const EditDeleteComment = ({ comment, userId }) => {
     const [isAuthor, setIsAuthor] = useState(false);
@@ -21,6 +25,7 @@ const EditDeleteComment = ({ comment, userId }) => {
     };
   
     const handleDelete = () => dispatch(deleteComment(userId, comment._id));
+    console.log(handleDelete())
   
     useEffect(() => {
       const checkAuthor = () => {
@@ -32,14 +37,14 @@ const EditDeleteComment = ({ comment, userId }) => {
     }, [uid, comment.commenterId]);
   
     return (
-      <div className="edit-comment">
+      <div className="edit__comment">
         {isAuthor && edit === false && (
           <span onClick={() => setEdit(!edit)}>
-            <img src="./img/icons/edit.svg" alt="edit-comment" />
+            <FontAwesomeIcon icon={faPen} alt="edit-comment" />
           </span>
         )}
         {isAuthor && edit && (
-          <form action="" onSubmit={handleEdit} className="edit-comment-form">
+          <form action="" onSubmit={handleEdit} className="edit__comment__form">
             <label htmlFor="text" onClick={() => setEdit(!edit)}>
               Editer
             </label>
@@ -51,7 +56,7 @@ const EditDeleteComment = ({ comment, userId }) => {
               defaultValue={comment.text}
             />
             <br />
-            <div className="btn">
+            <div className="edit__comment__form__btn">
               <span
                 onClick={() => {
                   if (window.confirm("Voulez-vous supprimer ce commentaire ?")) {
@@ -59,7 +64,7 @@ const EditDeleteComment = ({ comment, userId }) => {
                   }
                 }}
               >
-                <img src="./img/icons/trash.svg" alt="delete" />
+                <FontAwesomeIcon className="icon"  icon={faTrash} alt="delete" />
               </span>
               <input type="submit" value="Valider modification" />
             </div>

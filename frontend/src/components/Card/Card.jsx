@@ -5,6 +5,10 @@ import LikeButton from "./LikeButton";
 import { updatePost } from "../../actions/post";
 import DeleteCard from "./DeleteCard";
 import CardComments from "./CardComments";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faComment } from "@fortawesome/free-solid-svg-icons";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
+
 
 const Card = ({ post }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -27,36 +31,32 @@ const Card = ({ post }) => {
   }, [usersData]);
 
   return (
-    <li className="card__container" key={post._id}>
+    <li className="card" key={post._id}>
       {isLoading ? (
-        <i className="fas fa-spinner fa-spin"></i>
+        <i className="card--spinner"></i>
       ) : (
         <>
-          <div className="card">
-            <div className="card__header">
-              <div className="card__header__email">
-                <h3>
-                  {!isEmpty(usersData[0]) &&
-                    usersData
-                      .map((user) => {
-                        if (user._id === post.userId) return user.email;
-                        else return null;
-                      })
-                      .join("")}
-                </h3>
-                {post.userId !== userData._id }
+          <div className="card__container">
+            <div className="card__container__header">
+                {!isEmpty(usersData[0]) &&
+                  usersData
+                    .map((user) => {
+                      if (user._id === post.userId) return user.email;
+                      else return null;
+                })}
+              <div>
+                <span className="card__container__header__date">{dateParser(post.createdAt)}</span> 
               </div>
-              <span>{dateParser(post.createdAt)}</span>
             </div>
-            {isUpdated === false && <p>{post.message}</p>}
+            {isUpdated === false && <p className="card__container__post">{post.message}</p>}
             {isUpdated && (
-              <div className="update__post">
+              <div className="card__container__post__update">
                 <textarea
                   defaultValue={post.message}
                   onChange={(e) => setTextUpdate(e.target.value)}
                 />
-                <div className="update__post__button">
-                  <button className="update__post__button__btn" onClick={updateItem}>
+                <div className="card__container__post__update__button">
+                  <button className="card__container__post__update__button__update" onClick={updateItem}>
                     Valider modification
                   </button>
                 </div>
@@ -66,18 +66,18 @@ const Card = ({ post }) => {
               <img src={post.picture} alt="card-pic" className="card-pic" />
             )}
             {userData._id === post.userId && (
-              <div className="button__container">
+              <div className="card__container__header__post__update__button__update__delete">
                 <div onClick={() => setIsUpdated(!isUpdated)}>
-                  {/* <img src="./img/icons/edit.svg" alt="edit" /> */}
+                <FontAwesomeIcon className="icon"  icon={faPen} alt="edit" />
                 </div>
                 <DeleteCard id={post._id} />
               </div>
             )}
-            <div className="card__footer">
-              <div className="card__footer__comment">
-                <img
+            <div className="card__container__footer">
+              <div className="card__container__footer--commentIcon">
+                <FontAwesomeIcon className="icon"  icon={faComment} 
                   onClick={() => setShowComments(!showComments)}
-                  // src="./img/icons/message1.svg"
+                  src=""
                   alt="comment"
                 />
                 <span>{post.comments.length}</span>

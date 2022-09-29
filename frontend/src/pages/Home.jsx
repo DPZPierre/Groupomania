@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import NewPostForm from '../components/NewPostForm';
+import NewPostForm from '../components/Card/NewPostForm';
 import Thread from '../components/Thread';
 import { UidContext } from '../components/AppContext';
 import Login from '../components/Log/Login';

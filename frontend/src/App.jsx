@@ -17,9 +17,7 @@ const App = () => {
           url: `http://localhost:3000/jwtid`,
           withCredentials: true,
         });
-        console.log(res)
         setUid(res.data);
-        console.log(uid)
         if (uid) { 
           dispatch(getUser(uid));  
       } 

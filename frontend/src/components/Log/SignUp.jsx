@@ -5,6 +5,7 @@ import Login from "./Login";
 const SignUp = () => {
   const [formSubmit, setFormSubmit] = useState("");
   const [email, setEmail] = useState("");
+  const [controlEmail, setControlEmail] = useState("");
   const [password, setPassword] = useState("");
   const [controlPassword, setControlPassword] = useState("");
 
@@ -12,17 +13,25 @@ const SignUp = () => {
     e.preventDefault();
     const terms = document.getElementById("terms");
     const emailError = document.querySelector(".email.error");
+    const emailConfirmError = document.querySelector(
+      ".email-confirm.error"
+    );
     const passwordError = document.querySelector(".password.error");
     const passwordConfirmError = document.querySelector(
       ".password-confirm.error"
     );
     const termsError = document.querySelector(".terms.error");
     
-
+    emailConfirmError.innerHTML = "";
     passwordConfirmError.innerHTML = "";
     termsError.innerHTML = "";
 
-    if (password !== controlPassword || !terms.checked) {
+   
+
+    if (email !== controlEmail || password !== controlPassword || !terms.checked) {
+      if (email !== controlEmail)
+        emailConfirmError.innerHTML = 
+        "Les adresses mail ne correspondent pas";
       if (password !== controlPassword)
         passwordConfirmError.innerHTML =
           "Les mots de passe ne correspondent pas";
@@ -41,8 +50,8 @@ const SignUp = () => {
         .then((res) => {
           console.log(res);
           if (res.data.error) {
-            emailError.innerHTML = res.data.error;
-            passwordError.innerHTML = res.data.error;
+            emailError.innerHTML = res.data.errors.email;
+            passwordError.innerHTML = res.data.errors.password;
           } else {
             setFormSubmit(true);
           }
@@ -73,6 +82,17 @@ const SignUp = () => {
             value={email}
           />
           <div className="email error"></div>
+          <br />
+          <label htmlFor="email-conf">Confirmer email</label>
+          <br />
+          <input
+            type="text"
+            name="email"
+            id="email"
+            onChange={(e) => setControlEmail(e.target.value)}
+            value={controlEmail}
+          />
+          <div className="email-confirm error"></div>
           <br />
           <label htmlFor="password">Mot de passe</label>
           <br />

@@ -11,6 +11,7 @@ const userSchema = mongoose.Schema(
       trim: true,
     },
     password: { type: String, required: true },
+    bio: { type: String, max: 256 },
     likes: { type: [String] },
   },
   {
@@ -29,4 +30,18 @@ const roleSchema = mongoose.Schema({
       enum: ["admin", "partner", "basic"],
       default: "basic"
   },
+  apponitments: {
+      type: [
+          {
+              type: mongoose.Schema.Types.ObjectId,
+              ref: "Appointment"
+          }
+      ],
+      default: function () {
+          return this.role === "admin" ? undefined : this.value;
+      },
+      required: function () {
+          return this.role === "admin" ? false : true;
+      }
+  }
 })

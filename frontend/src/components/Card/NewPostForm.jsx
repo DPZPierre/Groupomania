@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addPost, getPosts } from "../actions/post";
-import { isEmpty, timestampParser } from "./Utils";
+import { addPost, getPosts } from "../../actions/post";
+import { isEmpty, timestampParser } from "../Utils";
 
 const NewPostForm = () => {
   const [isLoading, setIsLoading] = useState(true);
