@@ -56,7 +56,7 @@ const Card = ({ post }) => {
                   onChange={(e) => setTextUpdate(e.target.value)}
                 />
                 <div className="card__container__post__update__button">
-                  <button className="card__container__post__update__button__update" onClick={updateItem}>
+                  <button className="btn__update" onClick={updateItem}>
                     Valider modification
                   </button>
                 </div>
@@ -66,9 +66,9 @@ const Card = ({ post }) => {
               <img src={post.picture} alt="card-pic" className="card-pic" />
             )}
             {userData._id === post.userId && (
-              <div className="card__container__header__post__update__button__update__delete">
+              <div className="card__container__post__update__button__update__delete">
                 <div onClick={() => setIsUpdated(!isUpdated)}>
-                <FontAwesomeIcon className="icon"  icon={faPen} alt="edit" />
+                <FontAwesomeIcon className="icon__pen"  icon={faPen} alt="edit" />
                 </div>
                 <DeleteCard id={post._id} />
               </div>

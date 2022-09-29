@@ -17,7 +17,7 @@ const DeleteCard = (props) => {
         }
       }}
     >
-      <FontAwesomeIcon className="icon" icon={faTrash} alt="delete" />
+      <FontAwesomeIcon className="icon__trash" icon={faTrash} alt="delete" />
     </div>
   );
 };

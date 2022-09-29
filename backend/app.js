@@ -4,6 +4,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const path = require('path');
 const userRoutes = require('./routes/user');
 const postRoutes = require('./routes/post');
 const {checkUser, requireAuth} = require('./middleware/auth');
@@ -44,7 +45,6 @@ app.get('/jwtid', requireAuth, (req, res) => {
 
 app.use('/api/auth', userRoutes);
 app.use('/api/post', postRoutes);
-
-
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 module.exports = app;

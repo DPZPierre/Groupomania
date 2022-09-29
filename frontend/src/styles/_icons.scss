@@ -26,4 +26,24 @@
           padding-left: 10px;
           cursor: pointer;
         }
+          &__pen {
+            margin: 10px 25px 0 0;
+          }
+           &__pen__post {
+            margin: 10px 25px 0 0;
+            position: absolute;
+            height: 24px;
+            width: 24px;
+            transform: translate(-18px, 4px);
+           }
+             &__trash{
+               margin: 10px 0 0 0;
+             }
+
+             &__upload {
+                position: absolute;
+                height: 24px;
+                width: 24px;
+                transform: translate(-18px, 15px);
+             }
   }

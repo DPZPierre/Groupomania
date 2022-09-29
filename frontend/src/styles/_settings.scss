@@ -21,6 +21,9 @@ $shadow: 0 3px 20px rgba(0, 0, 0, 0.356);
   font-family: "Lato", sans-serif;
 };
 
+p {
+  word-wrap: break-word; 
+}
 
 body {
   color: $black1;

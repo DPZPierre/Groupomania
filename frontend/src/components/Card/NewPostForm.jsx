@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addPost, getPosts } from "../../actions/post";
 import { isEmpty, timestampParser } from "../Utils";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUpload } from "@fortawesome/free-solid-svg-icons";
 
 const NewPostForm = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -15,9 +17,6 @@ const NewPostForm = () => {
   useEffect(() => {
     if (!isEmpty(userData)) setIsLoading(false);
   }, [userData]);
-  console.log(userData)
-
-
 
   const handlePicture = (event) => {
     setPostPicture(URL.createObjectURL(event.target.files[0]));
@@ -36,7 +35,6 @@ const NewPostForm = () => {
       cancelPost();
     }
   };
-
 
   const cancelPost = () => {
     setMessage("");
@@ -72,24 +70,27 @@ const NewPostForm = () => {
               </div>
             ) : null}
             <div className="post__form__footer">
-              <div className="post__form__footer__icon">
-                <img src="" alt="user post" />
+              <div className="post__form__footer--icon">
+                <FontAwesomeIcon className="icon__upload" icon={faUpload} alt="user post" />
+                <form action="/images" enctype="multipart/form-data" method="post">
                 <input
+                  className="post__form__footer__input"
                   type="file"
                   id="file-upload"
                   name="file"
                   accept=".jpg, .jpeg, .png, .gif"
                   onChange={(event) => handlePicture(event)}
                 />
+                </form>
               </div>
               {!isEmpty(error.format) && <p>{error.format}</p>}
-              <div className="btn-send">
+              <div className="btn__post">
                 {message || postPicture ? (
-                  <button className="cancel" onClick={cancelPost}>
+                  <button className="btn__post--cancel" onClick={cancelPost}>
                     Annuler
                   </button>
                 ) : null}
-                <button className="send" onClick={handlePost}>
+                <button className="btn__post--send" onClick={handlePost}>
                   Envoyer
                 </button>
               </div>

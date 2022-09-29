@@ -38,15 +38,15 @@ export const addPost = (data) => {
   };
 };
 
-export const likePost = (userId ,postId ) => { 
+export const likePost = (postId , userId) => { 
   return (dispatch) => {
     return axios({
       method: "patch",
-      url: `http://localhost:3000/api/post/like/` + userId,
-      data: { id: postId },
+      url: `http://localhost:3000/api/post/like/` + postId,
+      data: { id: userId },
     })
       .then((res) => {
-        dispatch({ type: LIKE_POST, payload: { userId, postId } });
+        dispatch({ type: LIKE_POST, payload: { postId, userId } });
       })
       .catch((err) => console.log(err));
   };
@@ -121,7 +121,7 @@ export const editComment = (postId, commentId, text) => {
   };
 };
 
-export const deleteComment = (postId, commentId) => {
+export const deleteComment = (postId, commentId) => { console.log(postId)
   return (dispatch) => {
     return axios({
       method: "patch",
