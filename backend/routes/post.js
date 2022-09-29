@@ -2,11 +2,10 @@ const express = require('express');
 const router = express.Router();
 // const multer = require('../middleware/multer-config');
 const postsCtrl = require('../controllers/post');
-const multer = require("multer");
-const upload = multer();
+
 
 router.get('/', postsCtrl.readPost);
-router.post('/',  upload.single("file"), postsCtrl.createPost);
+router.post('/', postsCtrl.createPost);
 router.put('/:id', postsCtrl.updatePost);
 router.delete('/:id', postsCtrl.deletePost);
 router.patch('/like/:id', postsCtrl.likePost);

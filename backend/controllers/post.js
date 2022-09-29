@@ -18,7 +18,6 @@ exports.createPost = async (req, res) => {
   const newPost = new postModel({
     userId: req.body.userId,
     message: req.body.message,
-    
     likers: [],
     comments: [],
   });

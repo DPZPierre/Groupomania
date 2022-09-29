@@ -5,7 +5,7 @@ import { isEmpty, timestampParser } from "../Utils";
 
 const NewPostForm = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [post, setPost] = useState("");
+  const [message, setMessage] = useState("");
   const [postPicture, setPostPicture] = useState(null);
   const [file, setFile] = useState();
   const userData = useSelector((state) => state.user);
@@ -17,19 +17,19 @@ const NewPostForm = () => {
   }, [userData]);
   console.log(userData)
 
+
+
   const handlePicture = (event) => {
     setPostPicture(URL.createObjectURL(event.target.files[0]));
     setFile(event.target.files[0]);
   };
 
   const handlePost = async () => {
-    if (post || postPicture) {
+    if (message || postPicture) {
       const data = new FormData();
-      console.log(data)
       data.append("userId", userData._id);
-      data.append("post", post);
+      data.append("post", message);
       if (file) data.append("file", file);
-
 
       await dispatch(addPost(data));
       dispatch(getPosts());
@@ -37,42 +37,43 @@ const NewPostForm = () => {
     }
   };
 
+
   const cancelPost = () => {
-    setPost("");
+    setMessage("");
     setPostPicture("");
     setFile("");
   };
 
   return (
-    <div className="post-container">
+    <div className="post__container">
       {isLoading ? (
-        <i className="fas fa-spinner fa-pulse"></i>
+        <i className="post__container--spinner"></i>
       ) : (
         <>
-          <div className="post-form">
+          <div className="post__form">
             <textarea
-              name="message"
-              id="message"
-              placeholder="Ecrire un message"
-              onChange={(event) => setPost(event.target.value)}
-              value={post}
+              name="text"
+              id="text"
+              placeholder="Ecrire un nouveau message"
+              onChange={(e) => setMessage(e.target.value)}
+              value={message}
             />
-            {post || postPicture ? (
-              <li className="card-container">
-                <div className="card-right">
-                  <div className="card-header">
+            {message || postPicture ? (
+              <div className="post__form__card">
+                 <h3 className="post__form__card--email">{userData.email}</h3>
+                  <div className="post__form__card--header">
                     <span>{timestampParser(Date.now())}</span>
                   </div>
                   <div className="content">
-                    <p>{post}</p>
+                    <p>{message}</p>
                     <img src={postPicture} alt="" />
                   </div>
-                </div>
-              </li>
+             
+              </div>
             ) : null}
-            <div className="footer-form">
-              <div className="icon">
-                <img src="./img/icons/picture.svg" alt="user post" />
+            <div className="post__form__footer">
+              <div className="post__form__footer__icon">
+                <img src="" alt="user post" />
                 <input
                   type="file"
                   id="file-upload"
@@ -82,9 +83,8 @@ const NewPostForm = () => {
                 />
               </div>
               {!isEmpty(error.format) && <p>{error.format}</p>}
-              {!isEmpty(error.maxSize) && <p>{error.maxSize}</p>}
               <div className="btn-send">
-                {post || postPicture ? (
+                {message || postPicture ? (
                   <button className="cancel" onClick={cancelPost}>
                     Annuler
                   </button>

@@ -4,6 +4,12 @@
     height: 250px;
     &__logo {
         display: flex;
+        position: relative;
         justify-content: center;
     }
+}
+
+.like__container {
+    display: flex;
+    justify-content: space-between;
 }

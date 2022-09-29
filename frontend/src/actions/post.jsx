@@ -31,15 +31,14 @@ export const addPost = (data) => {
       .post(`http://localhost:3000/api/post/`, data) 
       .then((res) => {
         if (res.data.errors) {
-          dispatch({ type: GET_POST_ERRORS, payload: res.data.errors });
-        } else {
+         
           dispatch({ type: GET_POST_ERRORS, payload: "" });
         }
       });
   };
 };
 
-export const likePost = (userId ,postId ) => { console.log(userId)
+export const likePost = (userId ,postId ) => { 
   return (dispatch) => {
     return axios({
       method: "patch",

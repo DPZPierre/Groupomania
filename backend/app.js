@@ -45,4 +45,6 @@ app.get('/jwtid', requireAuth, (req, res) => {
 app.use('/api/auth', userRoutes);
 app.use('/api/post', postRoutes);
 
+
+
 module.exports = app;

@@ -30,7 +30,7 @@ const roleSchema = mongoose.Schema({
       enum: ["admin", "partner", "basic"],
       default: "basic"
   },
-  apponitments: {
+  appointments: {
       type: [
           {
               type: mongoose.Schema.Types.ObjectId,
