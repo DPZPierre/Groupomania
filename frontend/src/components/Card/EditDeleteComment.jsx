@@ -6,8 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 
-
-const EditDeleteComment = ({ comment, userId }) => {
+const EditDeleteComment = ({ comment, postId }) => {
     const [isAuthor, setIsAuthor] = useState(false);
     const [edit, setEdit] = useState(false);
     const [text, setText] = useState("");
@@ -18,13 +17,14 @@ const EditDeleteComment = ({ comment, userId }) => {
       e.preventDefault();
   
       if (text) {
-        dispatch(editComment(userId, comment._id, text));
+      
+        dispatch(editComment(postId, comment._id, text));
         setText("");
         setEdit(false);
       }
     };
   
-    const handleDelete = () => dispatch(deleteComment(userId, comment._id));
+    const handleDelete = () => dispatch(deleteComment(postId, comment._id));
 
     useEffect(() => {
       const checkAuthor = () => {

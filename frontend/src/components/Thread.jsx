@@ -8,7 +8,6 @@ const Thread = () => {
   const [loadPost, setLoadPost] = useState(true);
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
-  console.log(posts)
 
   const loadMore = () => {
     if (window.innerHeight + document.documentElement.scrollTop + 1 > document.scrollingElement.scrollHeight) {

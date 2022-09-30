@@ -1,4 +1,5 @@
 import {
+    ADD_POST,
     DELETE_COMMENT,
     DELETE_POST,
     EDIT_COMMENT,
@@ -13,6 +14,10 @@ import {
   
   export default function postsReducer(state = initialState, action) {
     switch (action.type) {
+      case ADD_POST:
+        const newState = [...state];
+        newState.push(action.payload)
+        return newState;
       case GET_POSTS:
         return action.payload;
       case LIKE_POST:
@@ -48,21 +53,10 @@ import {
         return state.filter((post) => post._id !== action.payload.userId);
       case EDIT_COMMENT:
         return state.map((post) => {
-          if (post._id === action.payload.userId) {
-            return {
-              ...post,
-              comments: post.comments.map((comment) => {
-                if (comment._id === action.payload.commentId) {
-                  return {
-                    ...comment,
-                    text: action.payload.text,
-                  };
-                } else {
-                  return comment;
-                }
-              }),
-            };
-          } else return post;
+          if (post._id === action.payload.postId) {
+            post.comments = [...action.payload.newComment]
+          } 
+          return post
         });
       case DELETE_COMMENT:
         return state.map((post) => {

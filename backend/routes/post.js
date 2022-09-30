@@ -6,7 +6,7 @@ const postsCtrl = require('../controllers/post');
 // const upload = multer();
 
 router.get('/', postsCtrl.readPost);
-router.post('/images',  multer, postsCtrl.createPost);
+router.post('/',  multer, postsCtrl.createPost);
 router.put('/:id', postsCtrl.updatePost);
 router.delete('/:id', postsCtrl.deletePost);
 router.patch('/like/:id', postsCtrl.likePost);

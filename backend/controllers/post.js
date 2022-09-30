@@ -18,7 +18,6 @@ exports.createPost = async (req, res) => {
   const newPost = new postModel({
     userId: req.body.userId,
     message: req.body.message,
-    picture: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
     likers: [],
     comments: [],
   });

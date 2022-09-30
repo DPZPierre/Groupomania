@@ -30,12 +30,9 @@ export const addPost = (data) => {
     return axios
       .post(`http://localhost:3000/api/post/`, data) 
       .then((res) => {
-        if (res.data.errors) {
-         
-          dispatch({ type: GET_POST_ERRORS, payload: "" });
-        }
+        dispatch({ type: ADD_POST, payload: res.data})
       });
-  };
+  };  
 };
 
 export const likePost = (postId , userId) => { 
@@ -114,8 +111,9 @@ export const editComment = (postId, commentId, text) => {
       url: `http://localhost:3000/api/post/edit-comment-post/${postId}`,
       data: { commentId, text },
     })
-      .then((res) => {
-        dispatch({ type: EDIT_COMMENT, payload: { postId, commentId, text } });
+      .then((res) => { 
+        console.log(res)
+        dispatch({ type: EDIT_COMMENT, payload: { postId: res.data._id, newComment: res.data.comments } });
       })
       .catch((err) => console.log(err));
   };

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addPost, getPosts } from "../../actions/post";
+import { addPost } from "../../actions/post";
 import { isEmpty, timestampParser } from "../Utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
@@ -9,7 +9,7 @@ const NewPostForm = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [message, setMessage] = useState("");
   const [postPicture, setPostPicture] = useState(null);
-  const [file, setFile] = useState();
+  const [setFile] = useState();
   const userData = useSelector((state) => state.user);
   const error = useSelector((state) => state.errors);
   const dispatch = useDispatch();
@@ -25,13 +25,8 @@ const NewPostForm = () => {
 
   const handlePost = async () => {
     if (message || postPicture) {
-      const data = new FormData();
-      data.append("userId", userData._id);
-      data.append("post", message);
-      if (file) data.append("file", file);
-
-      await dispatch(addPost(data));
-      dispatch(getPosts());
+        
+      await dispatch(addPost({userId: userData._id, message }));
       cancelPost();
     }
   };
@@ -72,7 +67,7 @@ const NewPostForm = () => {
             <div className="post__form__footer">
               <div className="post__form__footer--icon">
                 <FontAwesomeIcon className="icon__upload" icon={faUpload} alt="user post" />
-                <form action="/images" enctype="multipart/form-data" method="post">
+                <form action="/images" encType="multipart/form-data" method="post">
                 <input
                   className="post__form__footer__input"
                   type="file"

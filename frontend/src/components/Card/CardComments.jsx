@@ -44,14 +44,16 @@ const CardComments = ({ post }) => {
       {userData._id && (
         <form action="" onSubmit={handleComment} className="comment__form">
           <input
-            type="text"
             name="text"
+            id="text"
             onChange={(e) => setText(e.target.value)}
             value={text}
             placeholder="Laisser un commentaire"
           />
           <br />
-          <input type="submit" value="Envoyer" />
+          <button className="btn__post--send">
+            Envoyer
+          </button>
         </form>
       )}
     </div>
