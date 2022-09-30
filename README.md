@@ -13,3 +13,7 @@ Pour le backend suivez ces instructions :
     Initialisez les packages via la commande npm install
     Lancez le backend en tapant ensuite nodemon server.
     
+Pour créer un compte :
+    
+    Une adresse email
+    Un mot de passe de minimum 8 caractères contenant au moins : 1 minuscule, 1 majuscule, 1 chiffre et 1 symbole.
