@@ -10,7 +10,7 @@ router.post('/',  multer, postsCtrl.createPost);
 router.put('/:id', postsCtrl.updatePost);
 router.delete('/:id', postsCtrl.deletePost);
 router.patch('/like/:id', postsCtrl.likePost);
-router.patch('/dislike/:id', postsCtrl.disLikePost)
+
 
 router.patch('/comment-post/:id', postsCtrl.commentPost);
 router.patch('/edit-comment-post/:id', postsCtrl.editCommentPost);

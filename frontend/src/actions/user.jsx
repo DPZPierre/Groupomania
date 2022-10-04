@@ -1,15 +1,12 @@
 import axios from "axios";
-
 export const GET_USER = "GET_USER";
-export const UPLOAD_PICTURE = "UPLOAD_PICTURE";
-
-
 export const GET_USER_ERRORS = "GET_USER_ERRORS";
 
-export const getUser = (uid) => { console.log(uid)
+export const getUser = (id) => { 
+  console.log(id)
   return (dispatch) => {
-    return axios
-      .get(`http://localhost:3000/api/auth/${uid}`)
+    return  axios
+      .get(`http://localhost:3000/api/auth/${id}`)
       .then((res) => {
         dispatch({ type: GET_USER, payload: res.data });
       })
@@ -17,22 +14,3 @@ export const getUser = (uid) => { console.log(uid)
   };
 };
 
-export const uploadPicture = (data, id) => {
-  return (dispatch) => {
-    return axios
-      .post(`http://localhost:3000/api/auth/upload`, data)
-      .then((res) => {
-        if (res.data.errors) {
-          dispatch({ type: GET_USER_ERRORS, payload: res.data.errors });
-        } else {
-          dispatch({ type: GET_USER_ERRORS, payload: "" });
-          return axios
-            .get(`http://localhost:3000/api/auth/${id}`)
-            .then((res) => {
-              dispatch({ type: UPLOAD_PICTURE, payload: res.data.picture });
-            });
-        }
-      })
-      .catch((err) => console.log(err));
-  };
-};

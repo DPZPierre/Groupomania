@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UidContext } from "../AppContext";
 import { useDispatch } from "react-redux";
-import { likePost, dislikePost } from "../../actions/post";
+import { likePost } from "../../actions/post";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 
 
@@ -17,11 +16,6 @@ const LikeButton = ({ post }) => {
     setLiked(true);
   };
 
-  const dislike = () => {
-    dispatch(dislikePost(post._id, uid))
-    setLiked(false);
-  };
-
   useEffect(() => {
     if (post.likers.includes(uid)) setLiked(true);
     else setLiked(false);
@@ -31,7 +25,6 @@ const LikeButton = ({ post }) => {
     <div className="like__container">
       <FontAwesomeIcon className="icon--like"  icon={faThumbsUp} onClick={like} alt="like"/>
         <span>{post.likers.length}</span>
-         <FontAwesomeIcon className="icon--dislike"  icon={faThumbsDown} onClick={dislike} alt="dislike" />
     </div>
   );
 };

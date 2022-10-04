@@ -19,14 +19,18 @@ const Logout = () => {
     })
       .then(() => removeCookie("jwt"))
       .catch((err) => console.log(err));
-    
+
     window.location = "/";
   };
 
   return (
     <div onClick={logout}>
       <p className="icon__logout">Se déconnecter</p>
-      <FontAwesomeIcon className="icon__logout--icon"  icon={faRightFromBracket} alt="logout" />
+      <FontAwesomeIcon
+        className="icon__logout--icon"
+        icon={faRightFromBracket}
+        alt="logout"
+      />
     </div>
   );
 };

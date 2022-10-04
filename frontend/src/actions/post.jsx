@@ -3,7 +3,6 @@ import axios from "axios";
 export const GET_POSTS = "GET_POSTS";
 export const ADD_POST = "ADD_POST";
 export const LIKE_POST = "LIKE_POST";
-export const DISLIKE_POST = "DISLIKE_POST";
 export const UPDATE_POST = "UPDATE_POST";
 export const DELETE_POST = "DELETE_POST";
 
@@ -27,37 +26,21 @@ export const getPosts = (num) => {
 
 export const addPost = (data) => {
   return (dispatch) => {
-    return axios
-      .post(`http://localhost:3000/api/post/`, data) 
-      .then((res) => {
-        dispatch({ type: ADD_POST, payload: res.data})
-      });
-  };  
+    return axios.post(`http://localhost:3000/api/post/`, data).then((res) => {
+      dispatch({ type: ADD_POST, payload: res.data });
+    });
+  };
 };
 
-export const likePost = (postId , userId) => { 
+export const likePost = (postId, userId) => {
   return (dispatch) => {
     return axios({
       method: "patch",
       url: `http://localhost:3000/api/post/like/` + postId,
       data: { id: userId },
     })
-      .then((res) => {
+      .then(() => {
         dispatch({ type: LIKE_POST, payload: { postId, userId } });
-      })
-      .catch((err) => console.log(err));
-  };
-};
-
-export const dislikePost = (postId, userId) => {
-  return (dispatch) => {
-    return axios({
-      method: "patch",
-      url: `http://localhost:3000/api/post/dislike/` + postId,
-      data: { id: userId },
-    })
-      .then((res) => {
-        dispatch({ type: DISLIKE_POST, payload: { postId, userId } });
       })
       .catch((err) => console.log(err));
   };
@@ -90,12 +73,12 @@ export const deletePost = (postId) => {
   };
 };
 
-export const addComment = (postId, commenterId, text, commenterPseudo) => {
+export const addComment = (postId, commenterId, text) => {
   return (dispatch) => {
     return axios({
       method: "patch",
       url: `http://localhost:3000/api/post/comment-post/${postId}`,
-      data: { commenterId, text, commenterPseudo },
+      data: { commenterId, text },
     })
       .then((res) => {
         dispatch({ type: ADD_COMMENT, payload: { postId } });
@@ -105,21 +88,25 @@ export const addComment = (postId, commenterId, text, commenterPseudo) => {
 };
 
 export const editComment = (postId, commentId, text) => {
+  console.log(postId, commentId, text);
   return (dispatch) => {
     return axios({
       method: "patch",
       url: `http://localhost:3000/api/post/edit-comment-post/${postId}`,
       data: { commentId, text },
     })
-      .then((res) => { 
-        console.log(res)
-        dispatch({ type: EDIT_COMMENT, payload: { postId: res.data._id, newComment: res.data.comments } });
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: EDIT_COMMENT,
+          payload: { postId: res.data._id, newComment: res.data.comments },
+        });
       })
       .catch((err) => console.log(err));
   };
 };
 
-export const deleteComment = (postId, commentId) => { console.log(postId)
+export const deleteComment = (postId, commentId) => {
   return (dispatch) => {
     return axios({
       method: "patch",

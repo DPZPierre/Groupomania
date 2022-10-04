@@ -9,7 +9,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment } from "@fortawesome/free-solid-svg-icons";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 
-
 const Card = ({ post }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isUpdated, setIsUpdated] = useState(false);
@@ -38,17 +37,20 @@ const Card = ({ post }) => {
         <>
           <div className="card__container">
             <div className="card__container__header">
-                {!isEmpty(usersData[0]) &&
-                  usersData
-                    .map((user) => {
-                      if (user._id === post.userId) return user.email;
-                      else return null;
+              {!isEmpty(usersData[0]) &&
+                usersData.map((user) => {
+                  if (user._id === post.userId) return user.email;
+                  else return null;
                 })}
               <div>
-                <span className="card__container__header__date">{dateParser(post.createdAt)}</span> 
+                <span className="card__container__header__date">
+                  {dateParser(post.createdAt)}
+                </span>
               </div>
             </div>
-            {isUpdated === false && <p className="card__container__post">{post.message}</p>}
+            {isUpdated === false && (
+              <p className="card__container__post">{post.message}</p>
+            )}
             {isUpdated && (
               <div className="card__container__post__update">
                 <textarea
@@ -68,14 +70,20 @@ const Card = ({ post }) => {
             {userData._id === post.userId && (
               <div className="card__container__post__update__button__update__delete">
                 <div onClick={() => setIsUpdated(!isUpdated)}>
-                <FontAwesomeIcon className="icon__pen"  icon={faPen} alt="edit" />
+                  <FontAwesomeIcon
+                    className="icon__pen"
+                    icon={faPen}
+                    alt="edit"
+                  />
                 </div>
                 <DeleteCard id={post._id} />
               </div>
             )}
             <div className="card__container__footer">
               <div className="card__container__footer--commentIcon">
-                <FontAwesomeIcon className="icon"  icon={faComment} 
+                <FontAwesomeIcon
+                  className="icon"
+                  icon={faComment}
                   onClick={() => setShowComments(!showComments)}
                   src=""
                   alt="comment"

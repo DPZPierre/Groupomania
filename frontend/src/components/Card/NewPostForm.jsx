@@ -9,7 +9,7 @@ const NewPostForm = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [message, setMessage] = useState("");
   const [postPicture, setPostPicture] = useState(null);
-  const [setFile] = useState();
+  const [file, setFile] = useState();
   const userData = useSelector((state) => state.user);
   const error = useSelector((state) => state.errors);
   const dispatch = useDispatch();
@@ -25,8 +25,8 @@ const NewPostForm = () => {
 
   const handlePost = async () => {
     if (message || postPicture) {
-        
-      await dispatch(addPost({userId: userData._id, message }));
+      
+      await dispatch(addPost({userId: userData._id, message, postPicture }));
       cancelPost();
     }
   };
@@ -45,6 +45,7 @@ const NewPostForm = () => {
         <>
           <div className="post__form">
             <textarea
+              aria-label="post container"
               name="text"
               id="text"
               placeholder="Ecrire un nouveau message"
@@ -69,6 +70,7 @@ const NewPostForm = () => {
                 <FontAwesomeIcon className="icon__upload" icon={faUpload} alt="user post" />
                 <form action="/images" encType="multipart/form-data" method="post">
                 <input
+                  aria-label="picture input"
                   className="post__form__footer__input"
                   type="file"
                   id="file-upload"

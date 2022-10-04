@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addComment, getPosts } from "../../actions/post";
+import { addComment } from "../../actions/post";
 import { timestampParser } from "../Utils";
 import EditDeleteComment from "./EditDeleteComment";
 
@@ -14,8 +14,8 @@ const CardComments = ({ post }) => {
 
     if (text) {
       dispatch(addComment(post._id, userData._id, text, userData.email))
-        .then(() => dispatch(getPosts()))
-        .then(() => setText(''));
+        // .then(() => dispatch(getPosts()))
+        .then(() => setText(""));
     }
   };
 
@@ -31,14 +31,17 @@ const CardComments = ({ post }) => {
             }
             key={comment._id}
           >
-   
-              <div className="comment__container__header">
-                  <p className="comment__container__header--email">{userData.email}</p>
-                <span className="comment__container__header--date">{timestampParser(comment.timestamp)}</span>
-              </div>
-              <p className="comment__container__post">{comment.text}</p>
-              <EditDeleteComment comment={comment} postId={post._id} />
+            <div className="comment__container__header">
+              <p className="comment__container__header--email">
+                {userData.email}
+              </p>
+              <span className="comment__container__header--date">
+                {timestampParser(comment.timestamp)}
+              </span>
             </div>
+            <p className="comment__container__post">{comment.text}</p>
+            <EditDeleteComment comment={comment} postId={post._id} />
+          </div>
         );
       })}
       {userData._id && (
@@ -51,9 +54,7 @@ const CardComments = ({ post }) => {
             placeholder="Laisser un commentaire"
           />
           <br />
-          <button className="btn__post--send">
-            Envoyer
-          </button>
+          <button className="btn__post--send">Envoyer</button>
         </form>
       )}
     </div>

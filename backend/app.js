@@ -9,6 +9,11 @@ const userRoutes = require('./routes/user');
 const postRoutes = require('./routes/post');
 const {checkUser, requireAuth} = require('./middleware/auth');
 
+const corsOptions ={
+  origin:'http://localhost:3001', 
+  credentials:true,            
+  optionSuccessStatus:200
+};
 
 mongoose
   .connect(
@@ -27,12 +32,6 @@ app.use((req, res, next) => {
     next();
   });
 
-const corsOptions ={
-    origin:'http://localhost:3001', 
-    credentials:true,            
-    optionSuccessStatus:200
-};
-
 app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -46,5 +45,7 @@ app.get('/jwtid', requireAuth, (req, res) => {
 app.use('/api/auth', userRoutes);
 app.use('/api/post', postRoutes);
 app.use('/images', express.static(path.join(__dirname, 'images')));
+
+app.enable('trust proxy');
 
 module.exports = app;
