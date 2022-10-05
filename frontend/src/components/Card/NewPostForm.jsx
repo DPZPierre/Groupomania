@@ -8,8 +8,8 @@ import { faUpload } from "@fortawesome/free-solid-svg-icons";
 const NewPostForm = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [message, setMessage] = useState("");
-  const [postPicture, setPostPicture] = useState(null);
-  const [file, setFile] = useState();
+  const [picture, setPicture] = useState(null);
+ 
   const userData = useSelector((state) => state.user);
   const error = useSelector((state) => state.errors);
   const dispatch = useDispatch();
@@ -19,22 +19,25 @@ const NewPostForm = () => {
   }, [userData]);
 
   const handlePicture = (event) => {
-    setPostPicture(URL.createObjectURL(event.target.files[0]));
-    setFile(event.target.files[0]);
+    console.log(event.target.files[0]);
+    setPicture(event.target.files[0]);
   };
 
-  const handlePost = async () => {
-    if (message || postPicture) {
-      
-      await dispatch(addPost({userId: userData._id, message, postPicture }));
+  const handlePost = async (e) => {
+    e.preventDefault();
+    if (message || picture) {
+      await dispatch(addPost({ userId: userData._id, message, picture }));
       cancelPost();
+    }
+    if (!message) {
+      return alert("Votre message est vide");
     }
   };
 
   const cancelPost = () => {
     setMessage("");
-    setPostPicture("");
-    setFile("");
+    setPicture("");
+   
   };
 
   return (
@@ -52,44 +55,51 @@ const NewPostForm = () => {
               onChange={(e) => setMessage(e.target.value)}
               value={message}
             />
-            {message || postPicture ? (
+            {message || picture ? (
               <div className="post__form__card">
-                 <h3 className="post__form__card--email">{userData.email}</h3>
-                  <div className="post__form__card--header">
-                    <span>{timestampParser(Date.now())}</span>
-                  </div>
-                  <div className="content">
-                    <p>{message}</p>
-                    <img src={postPicture} alt="" />
-                  </div>
-             
+                <h3 className="post__form__card--email">{userData.email}</h3>
+                <div className="post__form__card--header">
+                  <span>{timestampParser(Date.now())}</span>
+                </div>
+                <div className="content">
+                  <p>{message}</p>
+                  <img className="post__picture" src={picture} alt="" />
+                </div>
               </div>
             ) : null}
             <div className="post__form__footer">
               <div className="post__form__footer--icon">
-                <FontAwesomeIcon className="icon__upload" icon={faUpload} alt="user post" />
-                <form action="/images" encType="multipart/form-data" method="post">
-                <input
-                  aria-label="picture input"
-                  className="post__form__footer__input"
-                  type="file"
-                  id="file-upload"
-                  name="file"
-                  accept=".jpg, .jpeg, .png, .gif"
-                  onChange={(event) => handlePicture(event)}
+                <FontAwesomeIcon
+                  className="icon__upload"
+                  icon={faUpload}
+                  alt="upload icon"
                 />
+                <form
+                  encType="multipart/form-data"
+                  method="post"
+                  onSubmit={handlePost}
+                >
+                  <input
+                    aria-label="picture input"
+                    className="post__form__footer__input"
+                    type="file"
+                    id="file-upload"
+                    name="file"
+                    accept=".jpg, .jpeg, .png, .gif"
+                    onChange={(event) => handlePicture(event)}
+                  />
+                <button type="submit" className="btn__post--send" onClick={handlePost}>
+                  Envoyer
+                </button>
                 </form>
               </div>
               {!isEmpty(error.format) && <p>{error.format}</p>}
               <div className="btn__post">
-                {message || postPicture ? (
+                {message || picture ? (
                   <button className="btn__post--cancel" onClick={cancelPost}>
                     Annuler
                   </button>
                 ) : null}
-                <button className="btn__post--send" onClick={handlePost}>
-                  Envoyer
-                </button>
               </div>
             </div>
           </div>

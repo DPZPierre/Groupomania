@@ -38,7 +38,7 @@ const EditDeleteComment = ({ comment, postId }) => {
     <div className="edit__comment">
       {isAuthor && edit === false && (
         <span onClick={() => setEdit(!edit)}>
-          <FontAwesomeIcon icon={faPen} alt="edit-comment" />
+          <FontAwesomeIcon icon={faPen} className="edit__comment--icon" alt="edit-comment" />
         </span>
       )}
       {isAuthor && edit && (
@@ -64,7 +64,9 @@ const EditDeleteComment = ({ comment, postId }) => {
             >
               <FontAwesomeIcon className="icon" icon={faTrash} alt="delete" />
             </span>
-            <input type="submit" value="Valider modification" />
+            <button className="btn__update" onClick={handleEdit}>
+              Valider modification
+            </button>
           </div>
         </form>
       )}

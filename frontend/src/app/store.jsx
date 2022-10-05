@@ -4,6 +4,8 @@ import userReducer from '../reducers/user'
 import usersReducer from '../reducers/users'
 import errorsReducer from "../reducers/errors";
 
+
+
 const store = configureStore({
     reducer : { posts : postsReducer,
                 user : userReducer,

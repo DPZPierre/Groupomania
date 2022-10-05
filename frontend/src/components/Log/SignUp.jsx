@@ -31,7 +31,7 @@ const SignUp = () => {
     if (email !== controlEmail || password !== controlPassword || !terms.checked) {
       if (email !== controlEmail)
         emailConfirmError.innerHTML = 
-        "Les adresses mail ne correspondent pas";
+        "Les adresses emails ne correspondent pas";
       if (password !== controlPassword)
         passwordConfirmError.innerHTML =
           "Les mots de passe ne correspondent pas";
@@ -49,7 +49,7 @@ const SignUp = () => {
       })
         .then((res) => {
           console.log(res);
-          if (res.data.error) {
+          if (res.data.errors) {
             emailError.innerHTML = res.data.errors.email;
             passwordError.innerHTML = res.data.errors.password;
           } else {

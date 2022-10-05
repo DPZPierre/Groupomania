@@ -48,7 +48,7 @@ export default function postsReducer(state = initialState, action) {
       });
     case DELETE_COMMENT:
       return state.map((post) => {
-        if (post._id === action.payload.userId) {
+        if (post._id === action.payload.postId) {
           return {
             ...post,
             comments: post.comments.filter(

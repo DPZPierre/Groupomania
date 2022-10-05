@@ -1,4 +1,5 @@
 const multer = require('multer');
+const path = require('path');
 
 const MIME_TYPES = {
   'image/jpg': 'jpg',
@@ -8,14 +9,26 @@ const MIME_TYPES = {
 
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
-    callback(null, 'images');
+    console.log("log multer", req, file)
+    callback(null, path.resolve(process.cwd(), 'images'));
   },
   filename: (req, file, callback) => {
-    console.log(file)
     const name = file.originalname.split(' ').join('_');
     const extension = MIME_TYPES[file.mimetype];
     callback(null, name + Date.now() + '.' + extension);
+    console.log(file)
   }
 });
 
-module.exports = multer({storage: storage}).single('image');
+// console.log(storage)
+
+module.exports = multer({
+  storage: storage,
+  fileFilter: (req, file, cb) => {
+  if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
+    cb(null, true);
+  } else {
+    cb(null, false);
+    return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
+  }
+}});

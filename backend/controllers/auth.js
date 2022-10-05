@@ -22,13 +22,13 @@ exports.login = async (req, res) => {
   User.findOne({ email: req.body.email })
     .then((user) => {
       if (!user) {
-        return res.status(401).send({ error: "User unknown" });
+        return res.status(401).json({ error: "User unknown" });
       }
       bcrypt
         .compare(req.body.password, user.password)
         .then((valid) => {
           if (!valid) {
-            return res.status(401).send({ error: "Invalid password" });
+            return res.status(401).json({ error: "Invalid password" });
           } else {
             const maxAge = 3 * 24 * 60 * 60 * 1000;
             const token = jwt.sign({ id: user.id }, "RANDOM_TOKEN_SECRET", {
@@ -44,7 +44,7 @@ exports.login = async (req, res) => {
             });
           }
         })
-        .catch((error) => res.status(500).send({ error: "Error: " + error }));
+        .catch((error) => res.status(500).json({ error: "Error: " + error }));
     })
     .catch((error) => res.status(500).json({ error: "Error: " + error }));
 };

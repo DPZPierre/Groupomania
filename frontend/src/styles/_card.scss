@@ -4,7 +4,7 @@
   width: 60%;
   border: 5px solid $color2;
   margin: 20px;
-  padding: 10px;
+  padding: 10px 0;
   border-radius: 20px;
   margin: 8px auto;
   position: relative;
@@ -31,6 +31,7 @@
         justify-content: space-between;
         margin: 2px 0 4px;
         font-size: 18px;
+        padding: 0 10px;
 
         @media screen and (max-width: 590px) {
           margin: 12px 0 14px;
@@ -79,13 +80,18 @@
           margin-top: -18px;
         }
       }
+        &__post__update {
+          padding: 10px 15px 0 5px;
+        }
         &__post__update__button {
           display: flex;
           justify-content: flex-end;
+          padding: 10px;
         }
         .card__container__post__update__button__update__delete {
           display: flex;
           justify-content: flex-end;
+          padding: 0 10px;
         }
          
           &__footer{
@@ -93,7 +99,9 @@
             align-items: center;
             justify-content: center;
             justify-content: space-between;
-            padding: 12px 0 4px;
+            padding: 12px 10px ;
+            border-top: 2px solid $color2;
+            margin-top: 10px;
       
             img {
               height: 22px;

@@ -36,7 +36,7 @@ export const likePost = (postId, userId) => {
   return (dispatch) => {
     return axios({
       method: "patch",
-      url: `http://localhost:3000/api/post/like/` + postId,
+      url: `http://localhost:3000/api/post/like/${postId}`,
       data: { id: userId },
     })
       .then(() => {

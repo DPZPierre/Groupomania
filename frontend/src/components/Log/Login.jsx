@@ -7,8 +7,11 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    const emailError = document.querySelector(".emailError");
-    const passwordError = document.querySelector(".password.error");
+    const emailError = document.querySelector(".email__error");
+    const passwordError = document.querySelector(".password__error");
+
+    emailError.innerHTML = "";
+    passwordError.innerHTML = "";
 
     axios({
       method: "post",
@@ -19,11 +22,12 @@ const Login = () => {
         password,
       },
     })
-      .then((res) => {
-        console.log(res);
-        if (res.data.error) {
-          emailError.innerHTML = res.data.error;
-          passwordError.innerHTML = res.data.error;
+      .then((response) => {
+        console.log(response)
+        if (response.data.errors) {
+          emailError.innerHTML = response.data.errors.email;
+          passwordError.innerHTML = response.data.errors.password;
+          
         } else {
           window.location = "/Home";
         }
@@ -44,7 +48,7 @@ const Login = () => {
         onChange={(e) => setEmail(e.target.value)}
         value={email}
       />
-      <div className="emailError"></div>
+      <div className="email__error"></div>
       <br />
       <label htmlFor="password">Mot de passe</label>
       <br />
@@ -55,7 +59,7 @@ const Login = () => {
         onChange={(e) => setPassword(e.target.value)}
         value={password}
       />
-      <div className="password error"></div>
+      <div className="password__error"></div>
       <br />
       <input type="submit" value="Se connecter" />
     </form>

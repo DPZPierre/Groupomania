@@ -2,7 +2,7 @@ const postModel = require("../models/post");
 const PostModel = require("../models/post");
 const UserModel = require("../models/user");
 const ObjectID = require("mongoose").Types.ObjectId;
-const { uploadErrors } = require("../utils/errors");
+
 
 exports.readPost = (req, res) => {
   PostModel.find((err, docs) => {
@@ -12,11 +12,10 @@ exports.readPost = (req, res) => {
 };
 
 exports.createPost = async (req, res) => {
-  console.log(req.body.userId);
   const newPost = new postModel({
     userId: req.body.userId,
     message: req.body.message,
-    picture: req.body.postPicture,
+    picture: req.body.picture,
     likers: [],
     comments: [],
   });
