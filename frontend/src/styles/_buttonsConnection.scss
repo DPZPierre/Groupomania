@@ -22,11 +22,21 @@ button {
         font-size: 18px;
         background: $color3;
         padding: 0px 20px;
-        margin-left: 100px;
+        margin-left: 10px;
         border-radius: 10px;
         transition: 0.2s;
         height: 30px;
       }
+        &__newPost {
+        color: $white;
+        font-size: 18px;
+        background: $color3;
+        padding: 0px 20px;
+        border-radius: 10px;
+        transition: 0.2s;
+        height: 30px;
+        margin-right: 10px;
+        }
         
     }
 .btn__update {
@@ -39,4 +49,6 @@ button {
   transition: 0.2s;
   height: 30px;
 }
+
+
 

@@ -11,100 +11,99 @@
     margin: 20px 0;
     color: $color3;
   }
-    .post__form {
-      position: relative;
-      margin: 0 auto 0;
-  
-      textarea {
-        height: 62px;
-        width: 100%;
-        font-size: 24px;
-        padding: 12px 15px;
-        border-radius: 20px 20px 6px 20px;
-      }
-        &__card{
-          background: $white;
-          border-radius: 20px 20px 6px 20px;
-            &--email {
-              @media screen and (max-width: 440px) {
-                transform: translateY(-8px);
-              }
-            }
-             &--header {
-               @media screen and (max-width: 632px) {
-                 flex-direction: column;
-               }
-               @media screen and (max-width: 590px) {
-                 margin: 0;
-               }
-               span {
-                 @media screen and (max-width: 632px) {
-                   position: absolute;
-                   top: 40px;
-                 }
-                 @media screen and (max-width: 590px) {
-                   left: 68px;
-                 }
-                 @media screen and (max-width: 440px) {
-                   left: 14px;
-                   top: 60px;
-                 }
-              }
-            }
-            .content {
-              padding: 6px 0;
-              p {
-                text-align: left;
-                margin: 2px 0 6px;
-                font-size: 1.1rem;
-              }
-              img {
-                width: 100%;
-                border-radius: 6px;
-                margin-top: 12px;
-              }
-              @media screen and (max-width: 632px) {
-                margin-top: 20px;
-              }
-            }
-          }
-        }
-        .post__form__footer {
-          display: flex;
-          justify-content: space-between;
-          margin: 0 auto;
-          width: 100%;
-          
-          &--icon {
-            position: relative;
-            cursor: pointer;
-            width: 30px;
-            height: 20px;
-          }
-            &__input {
-              width: 25px;
-              height: 25px;
-              position: absolute;
-              transform: translate(-16px, -3px);
-              opacity: 0;
-              cursor: pointer;
-            
-                &::-webkit-file-upload-button {
-                cursor: pointer;
-            }
-            }
-            p {
-              margin-top: 4px;
-              color: red;
-            }
-            
-              button {
-                @media screen and (max-width: 460px) {
-                  font-size: 0.8rem;
-                  padding: 8px;
-                }
-              }
-            }
-        }
-    
+  .post__form {
+    position: relative;
+    margin: 0 auto 0;
 
+    textarea {
+      height: 62px;
+      width: 100%;
+      font-size: 24px;
+      padding: 12px 15px;
+      border-radius: 20px 20px 6px 20px;
+    }
+    &__card {
+      background: $white;
+      border-radius: 20px 20px 6px 20px;
+      &--email {
+        @media screen and (max-width: 440px) {
+          transform: translateY(-8px);
+        }
+      }
+      &--header {
+        @media screen and (max-width: 632px) {
+          flex-direction: column;
+        }
+        @media screen and (max-width: 590px) {
+          margin: 0;
+        }
+        span {
+          @media screen and (max-width: 632px) {
+            position: absolute;
+            top: 40px;
+          }
+          @media screen and (max-width: 590px) {
+            left: 68px;
+          }
+          @media screen and (max-width: 440px) {
+            left: 14px;
+            top: 60px;
+          }
+        }
+      }
+      .content {
+        padding: 6px 0;
+        p {
+          text-align: left;
+          margin: 2px 0 6px;
+          font-size: 1.1rem;
+        }
+        img {
+          width: 100%;
+          border-radius: 6px;
+          margin-top: 12px;
+        }
+        @media screen and (max-width: 632px) {
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+  .post__form__footer {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+
+    &--icon {
+      position: relative;
+      cursor: pointer;
+      width: 30px;
+      height: 20px;
+    }
+    &__input {
+      width: 25px;
+      height: 25px;
+      position: absolute;
+      transform: translate(-16px, -3px);
+      opacity: 0;
+      cursor: pointer;
+
+      &::-webkit-file-upload-button {
+        cursor: pointer;
+      }
+    }
+    p {
+      margin-top: 4px;
+      color: red;
+    }
+
+    button {
+      @media screen and (max-width: 460px) {
+        font-size: 0.8rem;
+        padding: 8px;
+      }
+    }
+  }
+}

@@ -9,7 +9,7 @@ const NewPostForm = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [message, setMessage] = useState("");
   const [picture, setPicture] = useState(null);
- 
+
   const userData = useSelector((state) => state.user);
   const error = useSelector((state) => state.errors);
   const dispatch = useDispatch();
@@ -37,7 +37,6 @@ const NewPostForm = () => {
   const cancelPost = () => {
     setMessage("");
     setPicture("");
-   
   };
 
   return (
@@ -74,6 +73,7 @@ const NewPostForm = () => {
                   icon={faUpload}
                   alt="upload icon"
                 />
+                </div>
                 <form
                   encType="multipart/form-data"
                   method="post"
@@ -88,11 +88,15 @@ const NewPostForm = () => {
                     accept=".jpg, .jpeg, .png, .gif"
                     onChange={(event) => handlePicture(event)}
                   />
-                <button type="submit" className="btn__post--send" onClick={handlePost}>
-                  Envoyer
-                </button>
+                  <button
+                    type="submit"
+                    className="btn__post__newPost"
+                    onClick={handlePost}
+                  >
+                    Envoyer
+                  </button>
                 </form>
-              </div>
+             
               {!isEmpty(error.format) && <p>{error.format}</p>}
               <div className="btn__post">
                 {message || picture ? (
