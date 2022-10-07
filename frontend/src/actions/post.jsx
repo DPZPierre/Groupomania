@@ -26,7 +26,11 @@ export const getPosts = (num) => {
 
 export const addPost = (data) => {
   return (dispatch) => {
-    return axios.post(`http://localhost:3000/api/post/`, data).then((res) => {
+    return axios.post(`http://localhost:3000/api/post/`, data, {
+      headers: {
+        'content-type': 'multipart/form-data',
+      },
+    }).then((res) => {
       dispatch({ type: ADD_POST, payload: res.data });
     });
   };
