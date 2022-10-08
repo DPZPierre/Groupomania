@@ -19,7 +19,6 @@ const NewPostForm = () => {
   }, [userData]);
 
   const handlePicture = (event) => {
-    console.log(event.target.files[0]);
     setPicture(event.target.files[0]);
   };
 
@@ -84,14 +83,13 @@ const NewPostForm = () => {
                     className="post__form__footer__input"
                     type="file"
                     id="file-upload"
-                    name="file"
+                    name="picture"
                     accept=".jpg, .jpeg, .png, .gif"
                     onChange={(event) => handlePicture(event)}
                   />
                   <button
                     type="submit"
                     className="btn__post__newPost"
-                    onClick={handlePost}
                   >
                     Envoyer
                   </button>
