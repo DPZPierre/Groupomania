@@ -19,7 +19,6 @@ const NewPostForm = () => {
   }, [userData]);
 
   const handlePicture = (event) => {
-    console.log(event.target.files[0]);
     setPicture(event.target.files[0]);
   };
 
@@ -103,8 +102,7 @@ const NewPostForm = () => {
                   
                   <button
                     type="submit"
-                    className="btn__post--send"
-                    onClick={handlePost}
+                    className="btn__post__newPost"
                   >
                     Envoyer
                   </button>
