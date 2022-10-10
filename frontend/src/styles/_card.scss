@@ -1,7 +1,7 @@
 .card {
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 50%;
   border: 5px solid $color2;
   margin: 20px;
   padding: 10px 0;
@@ -9,6 +9,7 @@
   margin: 8px auto;
   position: relative;
   min-height: 100px;
+  box-shadow: 1px 1px 20px rgba(120, 120, 120, 0.3);
 
   @media screen and (max-width: 440px) {
     padding-top: 26px;
@@ -21,108 +22,106 @@
     font-size: 24px;
     color: $color1;
   }
-    &__container {
-
-      @media screen and (max-width: 590px) {
+  &__container {
+    @media screen and (max-width: 590px) {
       margin-left: 18px;
     }
-      &__header {
-        display: flex;
-        justify-content: space-between;
-        margin: 2px 0 4px;
-        font-size: 18px;
-        padding: 0 10px;
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      margin: 2px 0 4px;
+      font-size: 18px;
+      padding: 0 10px;
 
-        @media screen and (max-width: 590px) {
-          margin: 12px 0 14px;
+      @media screen and (max-width: 590px) {
+        margin: 12px 0 14px;
+        padding: 0;
+      }
+
+      @media screen and (max-width: 750px) {
+        flex-direction: column;
+      }
+      &__date {
+        transform: translate(0px, -5px);
+        font-style: italic;
+
+        @media screen and (max-width: 440px) {
+          transform: translate(52px, -20px);
+        }
+
+        @media screen and (max-width: 440px) {
+          margin: 0px 0 -10px;
           padding: 0;
         }
 
-        @media screen and (max-width: 750px) {
-          flex-direction: column;
-        }
-          &__date {
-          transform: translate(0px, -5px);
-          font-style: italic;
-          
-          @media screen and (max-width: 440px) {
-          transform: translate(52px, -20px);
+        img {
+          padding: 5px;
+          cursor: pointer;
+          transition: 0.15s;
+          box-shadow: none;
+          height: 28px;
+          width: 28px;
+
+          &:hover {
+            transform: scale(1.2) translate(0px, 0px);
           }
-
-            @media screen and (max-width: 440px) {
-            margin: 0px 0 -10px;
-            padding: 0;
-            }
-
-              img {
-                padding: 5px;
-                cursor: pointer;
-                transition: 0.15s;
-                box-shadow: none;
-                height: 28px;
-                width: 28px;
-              
-                 &:hover {
-                   transform: scale(1.2) translate(0px, 0px);
-                 }
-               
-              }
-           }
-      }
-      &__post {
-        display: flex;
-        margin: 10px 10px;
-        padding: 10px 0;
-        font-size: 18px;
-        justify-content: center;
-
-        @media screen and (max-width: 440px) {
-          margin-top: -18px;
         }
       }
-        &__post__update {
-          padding: 10px 15px 0 5px;
+    }
+    &__post {
+      display: flex;
+      margin: 10px 10px;
+      padding: 10px 0;
+      font-size: 18px;
+      justify-content: center;
+
+      @media screen and (max-width: 440px) {
+        margin-top: -18px;
+      }
+    }
+    &__post__update {
+      padding: 10px 15px 0 5px;
+    }
+    &__post__update__button {
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+    }
+    .card__container__post__update__button__update__delete {
+      display: flex;
+      justify-content: flex-end;
+      padding: 0 10px;
+    }
+
+    &__footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      justify-content: space-between;
+      padding: 12px 10px;
+      border-top: 2px solid $color2;
+      margin-top: 10px;
+
+      img {
+        height: 22px;
+        width: 22px;
+        cursor: pointer;
+        transition: 0.2s;
+
+        &:hover {
+          transform: scale(1.2);
         }
-        &__post__update__button {
-          display: flex;
-          justify-content: flex-end;
-          padding: 10px;
-        }
-        .card__container__post__update__button__update__delete {
-          display: flex;
-          justify-content: flex-end;
-          padding: 0 10px;
-        }
-         
-          &__footer{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            justify-content: space-between;
-            padding: 12px 10px ;
-            border-top: 2px solid $color2;
-            margin-top: 10px;
-      
-            img {
-              height: 22px;
-              width: 22px;
-              cursor: pointer;
-              transition: 0.2s;
-      
-              &:hover {
-                transform: scale(1.2);
-              }
-            }
-          }
-            &__footer--commentIcon {
-              display: flex;
-              align-items: center;
-    
-              span {
-                font-size: 1.02rem;
-                position: absolute;
-                transform: translate(29px, 2px);
-              }
-            }
-    }  
-  } 
+      }
+    }
+    &__footer--commentIcon {
+      display: flex;
+      align-items: center;
+
+      span {
+        font-size: 1.02rem;
+        position: absolute;
+        transform: translate(29px, 2px);
+      }
+    }
+  }
+}

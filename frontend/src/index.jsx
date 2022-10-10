@@ -6,13 +6,14 @@ import reportWebVitals from "./reportWebVitals";
 import store from "./app/store";
 import { Provider } from "react-redux";
 import { getUsers } from "./actions/users";
-import { addPost, getPosts, likePost } from "./actions/post";
+import { addPost, likePost } from "./actions/post";
 import { getUser } from "./actions/user";
+import { showPosts } from "./features/postsSlice";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 store.dispatch(getUsers());
-store.dispatch(getPosts());
+showPosts();
 store.dispatch(getUser());
 store.dispatch(addPost());
 store.dispatch(likePost());

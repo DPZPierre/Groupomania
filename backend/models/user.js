@@ -22,26 +22,3 @@ const userSchema = mongoose.Schema(
 userSchema.plugin(uniqueValidator);
 
 module.exports = mongoose.models.User || mongoose.model("User", userSchema);
-
-
-// const roleSchema = mongoose.Schema({
-//   role: {
-//       type: String,
-//       enum: ["admin", "partner", "basic"],
-//       default: "basic"
-//   },
-//   appointments: {
-//       type: [
-//           {
-//               type: mongoose.Schema.Types.ObjectId,
-//               ref: "Appointment"
-//           }
-//       ],
-//       default: function () {
-//           return this.role === "admin" ? undefined : this.value;
-//       },
-//       required: function () {
-//           return this.role === "admin" ? false : true;
-//       }
-//   }
-// })

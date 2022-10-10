@@ -26,7 +26,11 @@ export const getPosts = (num) => {
 
 export const addPost = (data) => {
   return (dispatch) => {
-    return axios.post(`http://localhost:3000/api/post/`, data).then((res) => {
+    return axios.post(`http://localhost:3000/api/post/`, data, {
+      headers: {
+        'content-type': 'multipart/form-data',
+      },
+    }).then((res) => {
       dispatch({ type: ADD_POST, payload: res.data });
     });
   };
@@ -46,15 +50,15 @@ export const likePost = (postId, userId) => {
   };
 };
 
-export const updatePost = (postId, message) => {
+export const updatePost = (postId, message, picture) => {
   return (dispatch) => {
     return axios({
       method: "put",
       url: `http://localhost:3000/api/post/${postId}`,
-      data: { message },
+      data: { message, picture },
     })
       .then((res) => {
-        dispatch({ type: UPDATE_POST, payload: { message, postId } });
+        dispatch({ type: UPDATE_POST, payload: { message, postId, picture } });
       })
       .catch((err) => console.log(err));
   };

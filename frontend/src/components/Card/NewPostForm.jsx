@@ -67,44 +67,50 @@ const NewPostForm = () => {
               </div>
             ) : null}
             <div className="post__form__footer">
-              <div className="post__form__footer--icon">
+              
+                <form
+                  action="/"
+                  encType="multipart/form-data"
+                  method="post"
+                  onSubmit={handlePost}
+                >
+                <div className="post__form__footer--icon">
                 <FontAwesomeIcon
                   className="icon__upload"
                   icon={faUpload}
                   alt="upload icon"
                 />
-                </div>
-                <form
-                  encType="multipart/form-data"
-                  method="post"
-                  onSubmit={handlePost}
-                >
                   <input
                     aria-label="picture input"
                     className="post__form__footer__input"
                     type="file"
                     id="file-upload"
-                    name="file"
+                    name="picture"
                     accept=".jpg, .jpeg, .png, .gif"
                     onChange={(event) => handlePicture(event)}
                   />
+                  {!isEmpty(error.format) && <p>{error.format}</p>}
+                  </div>
+                  <div className="btn__post">
+                    {message || picture ? (
+                      <button
+                        className="btn__post--cancel"
+                        onClick={cancelPost}
+                      >
+                        Annuler
+                      </button>
+                    ) : null}
+                  
                   <button
                     type="submit"
-                    className="btn__post__newPost"
+                    className="btn__post--send"
                     onClick={handlePost}
                   >
                     Envoyer
                   </button>
+                  </div>
                 </form>
-             
-              {!isEmpty(error.format) && <p>{error.format}</p>}
-              <div className="btn__post">
-                {message || picture ? (
-                  <button className="btn__post--cancel" onClick={cancelPost}>
-                    Annuler
-                  </button>
-                ) : null}
-              </div>
+              
             </div>
           </div>
         </>
