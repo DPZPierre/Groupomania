@@ -64,6 +64,14 @@ textarea {
   margin-right: 15px;
   width: 20px;
 }
+#text {
+  @media screen and (max-width: 992px) {
+    font-size: 18px; 
+    }
+  @media screen and (max-width: 792px) {
+    font-size: 16px; 
+    }
+}
 
 
 .error {

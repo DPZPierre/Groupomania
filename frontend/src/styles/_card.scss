@@ -10,6 +10,10 @@
   position: relative;
   min-height: 100px;
   box-shadow: 1px 1px 20px rgba(120, 120, 120, 0.3);
+  @media screen and (max-width: 792px) {
+    width: 95%;
+  
+}
 
   @media screen and (max-width: 440px) {
     padding-top: 26px;
@@ -36,6 +40,7 @@
       @media screen and (max-width: 590px) {
         margin: 12px 0 14px;
         padding: 0;
+        margin-bottom: 30px;
       }
 
       @media screen and (max-width: 750px) {
@@ -47,6 +52,7 @@
 
         @media screen and (max-width: 440px) {
           transform: translate(52px, -20px);
+          font-size: 16px;
         }
 
         @media screen and (max-width: 440px) {

@@ -6,6 +6,7 @@ export const getPosts = createAsyncThunk(
     async (num) => {
         const res = await axios.get(`http://localhost:3000/api/post/`)
         const array = res.data.slice(0, num);
+        // console.log(array)
         return array
     }
 )

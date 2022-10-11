@@ -4,7 +4,7 @@ import axios from "axios";
 export const addPost = createAsyncThunk(
     "post/addPost",
     async (data) => {
-        const res = await axios.post(`http://localhost:3000/api/post/`,data, {
+        const res = await axios.post(`http://localhost:3000/api/post/`, data, {
             headers: {
                 'content-type': 'multipart/form-data',
             }
@@ -12,10 +12,7 @@ export const addPost = createAsyncThunk(
         });
         console.log(res.data)
         return res.data
-        
-    });
-console.log(addPost())
-  
+      });
 
 const initialState = {
     post: [],
@@ -33,7 +30,7 @@ const addPostSlice = createSlice({
         [addPost.fulfilled]: (state, action) => {
             state.status = "success";
             const newState = [...state];
-            newState.post.push(action.payload);
+            newState.post.post.push(action.payload);
         },
         [addPost.rejected]: (state, action) => {
             state.status = "failed"
@@ -41,6 +38,6 @@ const addPostSlice = createSlice({
     }
 });
 
-export const selectAllPosts = (state) => state.posts.posts
+
 
 export default addPostSlice.reducer;

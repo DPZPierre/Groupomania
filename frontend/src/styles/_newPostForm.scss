@@ -6,6 +6,9 @@
   position: relative;
   border: 10px solid $color2;
   box-shadow: 1px 1px 20px rgba(120, 120, 120, 0.3);
+  @media screen and (max-width: 792px) {
+    width: 95%; 
+    }
 
   i {
     font-size: 1.5rem;
@@ -39,14 +42,14 @@
           margin: 0;
         }
         span {
-          @media screen and (max-width: 632px) {
-            position: absolute;
-            top: 40px;
-          }
           @media screen and (max-width: 590px) {
             left: 68px;
+            font-size: 14px;
+            margin: 5px;
+            font-style: italic;
           }
           @media screen and (max-width: 440px) {
+            margin: 5px;
             left: 14px;
             top: 60px;
           }
@@ -65,7 +68,7 @@
           margin-top: 12px;
         }
         @media screen and (max-width: 632px) {
-          margin-top: 20px;
+          margin-top: 5px;
         }
       }
     }
@@ -74,9 +77,14 @@
     margin: 0 auto;
     width: 100%;
     display: flex;
-    justify-content: flex-end;
     margin-top: 10px;
-     position: relative;
+    position: relative;
+    @media screen and (max-width: 792px) {
+      display: flex;
+      flex-direction: column;
+    
+  }
+    
     &--icon {
       position: absolute;
       left: 10px;
@@ -99,13 +107,6 @@
     p {
       margin-top: 4px;
       color: red;
-    }
-
-    button {
-      @media screen and (max-width: 460px) {
-        font-size: 0.8rem;
-        padding: 8px;
-      }
     }
   }
 }

@@ -13,6 +13,12 @@ button {
 .btn__post {
   display: flex;
   justify-content: flex-end;
+  @media screen and (max-width: 792px) {
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px 15px;
+  
+}
 
   &:hover {
     filter: brightness(135%);
@@ -27,6 +33,9 @@ button {
     border-radius: 10px;
     transition: 0.2s;
     height: 30px;
+    @media screen and (max-width: 792px) {
+      margin-bottom: 10px; 
+    }
   }
   &__newPost {
     color: $white;

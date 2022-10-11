@@ -64,9 +64,11 @@ const Card = ({ post }) => {
                 </div>
               </div>
             )}
+            <div className="pic__container">
             {post.picture && (
               <img src={post.picture} alt="card-pic" className="card-pic" />
             )}
+            </div>
             {userData._id === post.userId && (
               <div className="card__container__post__update__button__update__delete">
                 <div onClick={() => setIsUpdated(!isUpdated)}>
