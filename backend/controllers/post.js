@@ -19,6 +19,7 @@ exports.createPost = async (req, res) => {
     likers: [],
     comments: [],
   });
+  console.log(newPost)
 
   try {
     const post = await newPost.save();

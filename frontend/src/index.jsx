@@ -6,9 +6,10 @@ import reportWebVitals from "./reportWebVitals";
 import store from "./app/store";
 import { Provider } from "react-redux";
 import { getUsers } from "./features/usersSlice";
-import { addPost, likePost } from "./actions/post";
-import { getUser } from "./actions/user";
+import { likePost } from "./actions/post";
+import { getUser } from "./features/userSlice";
 import { getPosts } from "./features/postsSlice";
+import { addPost } from "./features/addPostSlice";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

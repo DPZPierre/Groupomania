@@ -1,35 +1,34 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const getUsers = createAsyncThunk(
-    "users/getUsers",
-    async () => {
-        const res = await axios.get(`http://localhost:3000/api/auth`)
+export const getUser = createAsyncThunk(
+    "users/getUser",
+    async (userId) => {
+        const res = await axios.get(`http://localhost:3000/api/auth/${userId}`)
         // console.log(res.data)
         return res.data
     }
 )
 
-const usersSlice = createSlice({
+const userSlice = createSlice({
     name: "users",
     initialState: {
         users: [],
         status: null,
     },
     extraReducers: {
-        [getUsers.pending]: (state, action) => {
+        [getUser.pending]: (state, action) => {
             state.status = "loading"
         },
-        [getUsers.fulfilled]: (state, action) => {
+        [getUser.fulfilled]: (state, action) => {
             state.status= "success";
             state.users = action.payload
         },
-        [getUsers.rejected]: (state, action) => {
+        [getUser.rejected]: (state, action) => {
             state.status = "failed"
         }
     }
 });
 
 
-export default usersSlice.reducer;
-
+export default userSlice.reducer;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addPost } from "../../actions/post";
+import { addPost } from "../../features/addPostSlice";
 import { isEmpty, timestampParser } from "../Utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
@@ -102,7 +102,8 @@ const NewPostForm = () => {
                   
                   <button
                     type="submit"
-                    className="btn__post__newPost"
+                    className="btn__post--send"
+                    onClick={handlePost}
                   >
                     Envoyer
                   </button>

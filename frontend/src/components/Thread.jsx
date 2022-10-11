@@ -7,7 +7,8 @@ import { isEmpty } from "./Utils";
 const Thread = () => {
   const [loadPost, setLoadPost] = useState(true);
   const dispatch = useDispatch();
-  const posts = useSelector((state) => state.posts);
+  const posts = useSelector((state) => state.posts.posts);
+
 
   const loadMore = () => {
     if (window.innerHeight + document.documentElement.scrollTop + 1 > document.scrollingElement.scrollHeight) {
@@ -30,7 +31,7 @@ const Thread = () => {
       <ul>
         {!isEmpty(posts[0]) &&
           posts.map((post) => {
-            return <Card post={post} key={post._id} />;
+            return <Card post={post} key={post._id}  />;
           })}
       </ul>
     </div>
