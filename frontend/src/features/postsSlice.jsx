@@ -10,10 +10,15 @@ export const getPosts = createAsyncThunk(
     }
 )
 
+const initialState = {
+    posts: [],
+    status: 'idle',
+    error: null
+}
 
 const postsSlice = createSlice({
     name: "posts",
-    initialState: [],
+    initialState,
     extraReducers: {
         [getPosts.pending]: (state, action) => {
             state.status = "loading"

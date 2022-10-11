@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPosts } from "../actions/post";
+import { getPosts } from "../features/postsSlice";
 import Card from "./Card/Card";
 import { isEmpty } from "./Utils";
 

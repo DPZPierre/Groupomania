@@ -8,12 +8,13 @@ import { Provider } from "react-redux";
 import { getUsers } from "./features/usersSlice";
 import { addPost, likePost } from "./actions/post";
 import { getUser } from "./actions/user";
+import { getPosts } from "./features/postsSlice";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 store.dispatch(getUsers());
-
+store.dispatch(getPosts())
 store.dispatch(getUser());
 store.dispatch(addPost());
 store.dispatch(likePost());
