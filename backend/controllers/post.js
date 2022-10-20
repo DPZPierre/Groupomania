@@ -12,6 +12,7 @@ exports.readPost = (req, res) => {
 };
 
 exports.createPost = async (req, res) => {
+  console.log("------------------->BODY REQUEST",req.body)
   const newPost = new postModel({
     userId: req.body.userId,
     message: req.body.message,
@@ -53,6 +54,7 @@ exports.deletePost = (req, res) => {
     return res.status(400).send("ID unknown : " + req.params.id);
 
   PostModel.findByIdAndRemove(req.params.id, (err, docs) => {
+    console.log(docs)
     if (!err) res.send(docs);
     else console.log("Delete error : " + err);
   });

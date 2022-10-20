@@ -5,7 +5,7 @@ export const getUsers = createAsyncThunk(
     "users/getUsers",
     async () => {
         const res = await axios.get(`http://localhost:3000/api/auth`)
-        // console.log(res.data)
+        console.log(res.data)
         return res.data
     }
 )

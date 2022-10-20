@@ -4,7 +4,7 @@ import postsSlice from"../features/postsSlice";
 import userReducer from '../features/userSlice'
 import errorsReducer from "../reducers/errors";
 import usersReducer from "../features/usersSlice";
-import addPostSlice from "../features/addPostSlice";
+import addPostSlice from "../features/postsSlice";
 
 
 const store = configureStore({

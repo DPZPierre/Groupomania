@@ -11,7 +11,6 @@ const userSchema = mongoose.Schema(
       trim: true,
     },
     password: { type: String, required: true },
-    bio: { type: String, max: 256 },
     likes: { type: [String] },
   },
   {

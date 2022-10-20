@@ -6,10 +6,10 @@ import reportWebVitals from "./reportWebVitals";
 import store from "./app/store";
 import { Provider } from "react-redux";
 import { getUsers } from "./features/usersSlice";
-import { likePost } from "./actions/post";
+import { likePost } from "./features/postsSlice";
 import { getUser } from "./features/userSlice";
 import { getPosts } from "./features/postsSlice";
-import { addPost } from "./features/addPostSlice";
+import { newPost } from "./features/postsSlice";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -17,7 +17,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 store.dispatch(getUsers());
 store.dispatch(getPosts())
 store.dispatch(getUser());
-store.dispatch(addPost());
+store.dispatch(newPost());
 store.dispatch(likePost());
 
 root.render(

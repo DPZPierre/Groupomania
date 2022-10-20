@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addPost } from "../../features/addPostSlice";
+import { newPost } from "../../features/postsSlice";
 import { isEmpty, timestampParser } from "../Utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
@@ -25,7 +25,7 @@ const NewPostForm = () => {
   const handlePost = async (e) => {
     e.preventDefault();
     if (message || picture) {
-      await dispatch(addPost({ userId: userData._id, message, picture }));
+      await dispatch(newPost({ userId: userData._id, message, picture }));
       cancelPost();
     }
     if (!message) {
