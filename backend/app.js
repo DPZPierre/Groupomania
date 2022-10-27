@@ -8,6 +8,7 @@ const path = require('path');
 const userRoutes = require('./routes/user');
 const postRoutes = require('./routes/post');
 const {checkUser, requireAuth} = require('./middleware/auth');
+const rolesRoute = require('./routes/role');
 
 const corsOptions ={
   origin:'http://localhost:3001', 
@@ -42,6 +43,7 @@ app.get('/jwtid', requireAuth, (req, res) => {
   res.status(200).send(res.locals.user._id)
 });
 
+app.use('/api/role', rolesRoute);
 app.use('/api/auth', userRoutes);
 app.use('/api/post', postRoutes);
 app.use(express.static(__dirname));

@@ -22,6 +22,7 @@ exports.checkUser = (req, res, next) => {
 
 exports.requireAuth = (req, res, next) => {
   const token = req.cookies.jwt;
+  console.log(token)
   if (token) {
     jwt.verify(token, 'RANDOM_TOKEN_SECRET', async (err, decodedToken) => {
       if (err) {

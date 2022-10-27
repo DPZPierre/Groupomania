@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPosts } from "../features/postsSlice";
+import { getPosts } from "../actions/post";
 import Card from "./Card/Card";
 import { isEmpty } from "./Utils";
 
 const Thread = () => {
   const [loadPost, setLoadPost] = useState(true);
   const dispatch = useDispatch();
-  const posts = useSelector((state) => state.posts.posts);
+  const posts = useSelector((state) => state.posts);
 
 
   const loadMore = () => {
@@ -31,6 +31,7 @@ const Thread = () => {
       <ul>
         {!isEmpty(posts[0]) &&
           posts.map((post) => {
+            // console.log(post._id)
             return <Card post={post} key={post._id}  />;
           })}
       </ul>

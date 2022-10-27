@@ -12,6 +12,11 @@ const userSchema = mongoose.Schema(
     },
     password: { type: String, required: true },
     likes: { type: [String] },
+    role: {
+      type: mongoose.Types.ObjectId,
+      ref: "role",
+      required: true,
+    }
   },
   {
     timeStamps: true,

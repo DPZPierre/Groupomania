@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Login from "./Login";
+import { useEffect } from "react";
 
 const SignUp = () => {
   const [formSubmit, setFormSubmit] = useState("");
@@ -8,6 +9,20 @@ const SignUp = () => {
   const [controlEmail, setControlEmail] = useState("");
   const [password, setPassword] = useState("");
   const [controlPassword, setControlPassword] = useState("");
+  const [userRole, setRole] = useState(null);
+
+  useEffect(
+    () => {
+      axios.get('http://localhost:3000/api/role')
+      .then((res) => {
+        setRole(res.data.roles)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    },
+    [] 
+  ) 
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -27,7 +42,6 @@ const SignUp = () => {
     termsError.innerHTML = "";
 
    
-
     if (email !== controlEmail || password !== controlPassword || !terms.checked) {
       if (email !== controlEmail)
         emailConfirmError.innerHTML = 
@@ -45,6 +59,7 @@ const SignUp = () => {
         data: {
           email,
           password,
+          role: userRole._id
         },
       })
         .then((res) => {

@@ -17,7 +17,7 @@
         }
     }
       &--like{
-        color: $color3;
+        color: #32CD32;
         padding-right: 10px;
         cursor: pointer;
       }
@@ -28,16 +28,20 @@
         }
           &__pen {
             margin: 10px 25px 0 0;
+            cursor: pointer;
           }
            &__pen__post {
             margin: 10px 25px 0 0;
             position: absolute;
+            cursor: pointer;
             height: 24px;
             width: 24px;
             transform: translate(-18px, 4px);
            }
              &__trash{
                margin: 10px 0 0 0;
+               cursor: pointer;
+               color: $color1;
              }
 
              &__upload {
@@ -45,5 +49,6 @@
                 height: 24px;
                 width: 24px;
                 transform: translate(3px, 5px);
+                cursor: pointer;
              }
   }

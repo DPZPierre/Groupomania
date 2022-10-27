@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
-const isAdmin = require("../models/roleSchema")
+
 
 exports.signup = (req, res, next) => {
   bcrypt
@@ -9,7 +9,8 @@ exports.signup = (req, res, next) => {
     .then((hash) => {
       const user = new User({
         email: req.body.email,
-        password: hash,      
+        password: hash,   
+        role: req.body.role  
       });
       user
         .save()

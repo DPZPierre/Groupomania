@@ -1,5 +1,5 @@
 .connect__modal__container {
-    width: 50%;
+    width: 35%;
     margin: 40px auto 30px;
     text-align: center;
     position: relative;
@@ -8,6 +8,14 @@
     min-height: 250px;
     box-shadow: $shadow;
     background-color: $white;
+    @media screen and (max-width: 792px) {
+        width: 95%;
+      
+    }
+    // @media screen and (max-width: 992px) {
+    //     width: 50%;
+      
+    // }
         &__btn {
             position: absolute;
             left: 0;

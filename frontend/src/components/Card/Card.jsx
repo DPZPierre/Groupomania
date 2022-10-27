@@ -14,7 +14,7 @@ const Card = ({ post }) => {
   const [isUpdated, setIsUpdated] = useState(false);
   const [textUpdate, setTextUpdate] = useState(null);
   const [showComments, setShowComments] = useState(false);
-  const usersData = useSelector((state) => state.users.users);
+  const usersData = useSelector((state) => state.users);
   const userData = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
@@ -64,11 +64,9 @@ const Card = ({ post }) => {
                 </div>
               </div>
             )}
-            <div className="pic__container">
             {post.picture && (
               <img src={post.picture} alt="card-pic" className="card-pic" />
             )}
-            </div>
             {userData._id === post.userId && (
               <div className="card__container__post__update__button__update__delete">
                 <div onClick={() => setIsUpdated(!isUpdated)}>
