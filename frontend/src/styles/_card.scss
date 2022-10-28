@@ -27,9 +27,6 @@
     color: $color1;
   }
   &__container {
-    @media screen and (max-width: 590px) {
-      margin-left: 18px;
-    }
     &__header {
       display: flex;
       justify-content: space-between;
@@ -39,9 +36,9 @@
       border-bottom: 2px solid #FFD7D7;
 
       @media screen and (max-width: 590px) {
-        margin: 12px 0 14px;
-        padding: 0;
-        margin-bottom: 30px;
+        padding: 12px 0 20px 14px;
+       
+        
       }
 
       @media screen and (max-width: 750px) {
@@ -121,6 +118,7 @@
       }
     }
     &__footer--commentIcon {
+      color: $color3;
       display: flex;
       align-items: center;
       cursor: pointer;

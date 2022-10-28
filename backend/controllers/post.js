@@ -2,7 +2,7 @@ const postModel = require("../models/post");
 const PostModel = require("../models/post");
 const UserModel = require("../models/user");
 const ObjectID = require("mongoose").Types.ObjectId;
-
+const fs = require('fs');
 
 exports.readPost = (req, res) => {
   PostModel.find((err, docs) => {
@@ -12,7 +12,6 @@ exports.readPost = (req, res) => {
 };
 
 exports.createPost = async (req, res) => {
-  console.log("------------------->BODY REQUEST",req.body)
   const newPost = new postModel({
     userId: req.body.userId,
     message: req.body.message,
@@ -20,7 +19,6 @@ exports.createPost = async (req, res) => {
     likers: [],
     comments: [],
   });
-  console.log(newPost)
 
   try {
     const post = await newPost.save();
@@ -50,14 +48,23 @@ exports.updatePost = (req, res) => {
 };
 
 exports.deletePost = (req, res) => {
-  if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknown : " + req.params.id);
-
-  PostModel.findByIdAndRemove(req.params.id, (err, docs) => {
-    console.log(docs)
-    if (!err) res.send(docs);
-    else console.log("Delete error : " + err);
-  });
+  PostModel.findOne({ObjectID: req.params.id})
+      .then(post => {
+          if (!req.params.id) {
+              res.status(401).send( 'Not authorized');
+          } else {
+              const filename = post.picture.split('/images/')[1];
+              console.log("!!!!!!!!!!!",filename)
+              fs.unlink(`images/${filename}`, () => {
+                  PostModel.findByIdAndRemove(req.params.id)
+                      .then(() => { res.status(200).json({message: 'Post has been deleted !'})})
+                      .catch(error => res.status(401).json({ error }));
+              });
+          }
+      })
+      .catch( error => {
+          res.status(500).json({ error });
+      });
 };
 
 exports.likePost = async (req, res) => {

@@ -27,12 +27,14 @@
           cursor: pointer;
         }
           &__pen {
+            color: $color3;
             margin: 10px 25px 0 0;
             cursor: pointer;
           }
            &__pen__post {
             margin: 10px 25px 0 0;
             position: absolute;
+            color: $color3;
             cursor: pointer;
             height: 24px;
             width: 24px;
