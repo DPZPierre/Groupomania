@@ -3,6 +3,7 @@ import axios from "axios";
 export const GET_POSTS = "GET_POSTS";
 export const ADD_POST = "ADD_POST";
 export const LIKE_POST = "LIKE_POST";
+export const REMOVE_LIKE = "REMOVE_LIKE";
 export const UPDATE_POST = "UPDATE_POST";
 export const DELETE_POST = "DELETE_POST";
 
@@ -45,6 +46,20 @@ export const likePost = (postId, userId) => {
     })
       .then(() => {
         dispatch({ type: LIKE_POST, payload: { postId, userId } });
+      })
+      .catch((err) => console.log(err));
+  };
+};
+
+export const removeLike = (postId, userId) => {
+  return (dispatch) => {
+    return axios({
+      method: "delete",
+      url: `http://localhost:3000/api/post/dislike/${postId}`,
+      data: { id: userId },
+    })
+      .then(() => {
+        dispatch({ type: REMOVE_LIKE, payload: { postId, userId } });
       })
       .catch((err) => console.log(err));
   };

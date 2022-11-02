@@ -35,6 +35,7 @@ exports.updatePost = async (req, res) => {
   if (req.file) {
     newPictureUrl = `http://localhost:3000/images/${req.file ? req.file.filename : ''}`
   }
+
   if (newPictureUrl && post.picture) {
     const filename = post.picture.split("/images/")[1];
     fs.unlink(`images/${filename}`, (error) => {
@@ -115,6 +116,33 @@ exports.likePost = async (req, res) => {
       req.body.id,
       {
         $addToSet: { likes: req.params.id },
+      },
+      { new: true }
+    );
+  } catch (err) {
+    return res.status(400).send(err);
+  }
+};
+
+exports.removeLikePost = async (req, res) => {
+  if (!ObjectID.isValid(req.params.id))
+    return res.status(400).send("ID unknown : " + req.params.id);
+
+  try {
+    await PostModel.findByIdAndUpdate(
+      req.params.id,
+      {
+        $pull: { likers: req.body.id },
+      },
+      { new: true }
+    )
+      .then((data) => res.send(data))
+      .catch((err) => res.status(500).send({ message: err }));
+
+    await UserModel.findByIdAndUpdate(
+      req.body.id,
+      {
+        $pull: { likes: req.params.id },
       },
       { new: true }
     );

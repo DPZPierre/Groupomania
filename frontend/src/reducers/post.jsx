@@ -6,6 +6,7 @@ import {
   GET_POSTS,
   LIKE_POST,
   UPDATE_POST,
+  REMOVE_LIKE,
 } from "../actions/post";
 
 const initialState = {};
@@ -19,6 +20,16 @@ export default function postsReducer(state = initialState, action) {
     case GET_POSTS:
       return action.payload;
     case LIKE_POST:
+      return state.map((post) => {
+        if (post._id === action.payload.userId) {
+          return {
+            ...post,
+            likers: [action.payload.userId, ...post.likers],
+          };
+        }
+        return post;
+      });
+      case REMOVE_LIKE:
       return state.map((post) => {
         if (post._id === action.payload.userId) {
           return {
