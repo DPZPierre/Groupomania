@@ -33,8 +33,7 @@ const LikeButton = ({ post }) => {
   }, [uid, post.likers, dislike])
 
   function clickEvent() {
-    like();
-    removeLikePost();
+   liked ? removeLikePost() : like()
   }
 
   return (
