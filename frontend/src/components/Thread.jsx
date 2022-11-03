@@ -9,7 +9,6 @@ const Thread = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
 
-
   const loadMore = () => {
     if (window.innerHeight + document.documentElement.scrollTop + 1 > document.scrollingElement.scrollHeight) {
       setLoadPost(true);
@@ -31,7 +30,6 @@ const Thread = () => {
       <ul>
         {!isEmpty(posts[0]) &&
           posts.map((post) => {
-            // console.log(post._id)
             return <Card post={post} key={post._id}  />;
           })}
       </ul>

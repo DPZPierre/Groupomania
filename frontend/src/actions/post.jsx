@@ -68,7 +68,7 @@ export const removeLike = (postId, userId) => {
 export const updatePost = (postId, message, picture) => {
   return (dispatch) => {
     return axios({
-      method: "put",
+      method: "post",
       url: `http://localhost:3000/api/post/${postId}`,
       data: { message, picture },
     })

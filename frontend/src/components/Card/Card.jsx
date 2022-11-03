@@ -8,26 +8,33 @@ import CardComments from "./CardComments";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment } from "@fortawesome/free-solid-svg-icons";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { faUpload } from "@fortawesome/free-solid-svg-icons";
 
 const Card = ({ post }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isUpdated, setIsUpdated] = useState(false);
   const [textUpdate, setTextUpdate] = useState(null);
+  const [pictureUpdate, setPictureUpdate] = useState(null);
   const [showComments, setShowComments] = useState(false);
   const usersData = useSelector((state) => state.users);
   const userData = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  const updateItem = () => {
-    if (textUpdate) {
-      dispatch(updatePost(post._id, textUpdate));
-    }
-    setIsUpdated(false);
-  };
-
   useEffect(() => {
     !isEmpty(usersData[0]) && setIsLoading(false);
   }, [usersData]);
+
+  const handlePicture = (event) => {
+    setPictureUpdate(event.target.files[0]);
+  };
+
+  const updateItem = async (e) => {
+    e.preventDefault();
+    if (textUpdate || pictureUpdate) {
+      await dispatch(updatePost(post._id, textUpdate, pictureUpdate));
+    }
+    setIsUpdated(false);
+  };
 
   return (
     <li className="card" key={post._id}>
@@ -75,6 +82,29 @@ const Card = ({ post }) => {
                     icon={faPen}
                     alt="edit"
                   />
+                  <form
+                    action="/"
+                    encType="multipart/form-data"
+                    method="post"
+                    onSubmit={updateItem}
+                  >
+                    <div className="card__container__post--icon">
+                      <FontAwesomeIcon
+                        className="icon__upload"
+                        icon={faUpload}
+                        alt="upload icon"
+                      />
+                      <input
+                        aria-label="picture input"
+                        className="card__container__post__input"
+                        type="file"
+                        id="file-upload"
+                        name="picture"
+                        accept=".jpg, .jpeg, .png, .gif"
+                        onChange={(event) => handlePicture(event)}
+                      />
+                    </div>
+                  </form>
                 </div>
                 <DeleteCard id={post._id} />
               </div>

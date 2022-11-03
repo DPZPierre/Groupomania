@@ -46,7 +46,7 @@ app.get('/jwtid', requireAuth, (req, res) => {
 app.use('/api/role', rolesRoute);
 app.use('/api/auth', userRoutes);
 app.use('/api/post', postRoutes);
-app.use(express.static(__dirname));
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.enable('trust proxy');
 
