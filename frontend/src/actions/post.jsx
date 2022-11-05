@@ -67,13 +67,13 @@ export const removeLike = (postId, userId) => {
 
 export const updatePost = (postId, message, picture) => {
   return (dispatch) => {
-    return axios({
-      method: "post",
-      url: `http://localhost:3000/api/post/${postId}`,
-      data: { message, picture },
+    return axios.put(`http://localhost:3000/api/post/${postId}`, {message, picture}, {
+      headers: {
+        'content-type': 'multipart/form-data',
+      },
     })
       .then((res) => {
-        dispatch({ type: UPDATE_POST, payload: { message, postId, picture } });
+        dispatch({ type: UPDATE_POST, payload: { message, postId, newPictureUrl: res.data.picture } });
       })
       .catch((err) => console.log(err));
   };

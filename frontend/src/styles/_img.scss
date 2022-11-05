@@ -1,22 +1,23 @@
 img {
-    max-height: 250px;   
+    max-height: 250px; 
+    
 }
 
 .pic__container {
     display: flex;
     justify-content: center;
     margin: auto;
+    object-fit: contain;
     
 }
 
 .card-pic {
     display: flex;
     padding: 0 10px;
-    margin-bottom: 10px;
     justify-content: center;
     margin: auto;
     @media screen and (max-width: 492px) {
-        
+        width: 70%;  
         align-items: center;
         padding-right: 18px;
       

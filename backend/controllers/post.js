@@ -2,7 +2,7 @@ const postModel = require("../models/post");
 const PostModel = require("../models/post");
 const UserModel = require("../models/user");
 const ObjectID = require("mongoose").Types.ObjectId;
-const fs = require('fs');
+const fs = require("fs");
 
 exports.readPost = (req, res) => {
   PostModel.find((err, docs) => {
@@ -15,7 +15,9 @@ exports.createPost = async (req, res) => {
   const newPost = new postModel({
     userId: req.body.userId,
     message: req.body.message,
-    picture: `http://localhost:3000/images/${req.file ? req.file.filename : ''}`,
+    picture: `http://localhost:3000/images/${
+      req.file ? req.file.filename : ""
+    }`,
     likers: [],
     comments: [],
   });
@@ -30,71 +32,78 @@ exports.createPost = async (req, res) => {
 
 exports.updatePost = async (req, res) => {
   let newPictureUrl;
-  let post = await PostModel.findOne({ ObjectID: req.params.id});
-
+  let post = await PostModel.findOne({ ObjectID: req.params.id });
+  console.log(req.file);
   if (req.file) {
-    newPictureUrl = `http://localhost:3000/images/${req.file ? req.file.filename : ''}`
+    newPictureUrl = `http://localhost:3000/images/${
+      req.file ? req.file.filename : ""
+    }`;
+
+    if (post.picture) {
+      const filename = post.picture.split("/images/")[1];
+      return fs.unlink(`images/${filename}`, (error) => {
+        if(error) console.log(error);
+        PostModel.findByIdAndUpdate(
+          req.params.id,
+          { $set: { message: req.body.message, picture: newPictureUrl } },
+          { new: true },
+          (err, docs) => {
+            if (!err) res.send(docs);
+            else console.log("Update error : " + err);
+          }
+        );
+      });
+    }
   }
 
-  if (newPictureUrl && post.picture) {
-    const filename = post.picture.split("/images/")[1];
-    fs.unlink(`images/${filename}`, (error) => {
-      if (error) console.log(error);
-      else {
-        console.log(`Deleted file: images/${filename}`);
-      }
-    });
-  }
+  // if (newPictureUrl && post.picture) {
+  //   const filename = post.picture.split("/images/")[1];
+  //   fs.unlink(`images/${filename}`, (error) => {
+  //     if (error) console.log(error);
+  //     else {
+  //       console.log(`Deleted file: images/${filename}`);
+  //     }
+  //   });
+  // }
 
-  PostModel.findOne({ ObjectID: req.params.id})
-    .then(() => {
-      PostModel.updateOne(
-        {
-          message: req.body.message,
-          picture: newPictureUrl, 
-        },
-      )
-        .then(() => res.status(200).json({ message: "Post mis à jour !" }))
-        .catch((error) => res.status(400).json({ error }));
-    })
-    .catch((error) => res.status(500).json({ error }));
+  if (!ObjectID.isValid(req.params.id))
+    return res.status(400).send("ID unknown : " + req.params.id);
 
+  const updatedRecord = {
+    message: req.body.message,
+    picture: newPictureUrl,
+  };
 
-  // if (!ObjectID.isValid(req.params.id))
-  //   return res.status(400).send("ID unknown : " + req.params.id);
-
-  // const updatedRecord = {
-  //   message: req.body.message,
-  // };
-
-  // PostModel.findByIdAndUpdate(
-  //   req.params.id,
-  //   { $set: updatedRecord },
-  //   { new: true },
-  //   (err, docs) => {
-  //     if (!err) res.send(docs);
-  //     else console.log("Update error : " + err);
-  //   }
-  // );
+  PostModel.findByIdAndUpdate(
+    req.params.id,
+    { $set: updatedRecord },
+    { new: true },
+    (err, docs) => {
+      if (!err) res.send(docs);
+      else console.log("Update error : " + err);
+    }
+  );
 };
 
 exports.deletePost = (req, res) => {
-  PostModel.findOne({ObjectID: req.params.id})
-      .then(post => {
-          if (!req.params.id) {
-              res.status(401).send( 'Not authorized');
-          } else {
-              const filename = post.picture.split('/images/')[1];
-              fs.unlink(`images/${filename}`, () => {
-                  PostModel.findByIdAndRemove(req.params.id)
-                      .then(() => { res.status(200).json({message: 'Your post has been deleted !'})})
-                      .catch(error => res.status(401).json({ error }));
-              });
-          }
-      })
-      .catch( error => {
-          res.status(500).json({ error });
-      });
+  PostModel.findOne({ ObjectID: req.params.id })
+    .then((post) => {
+      if (!req.params.id) {
+        res.status(401).send("Not authorized");
+      } else {
+        const filename = post.picture.split("/images/")[1];
+        fs.unlink(`images/${filename}`, () => {
+          PostModel.findByIdAndRemove(req.params.id)
+            .then(() => {
+              res.status(200).json({ message: "Your post has been deleted !" });
+            })
+            .catch((error) => res.status(401).json({ error }));
+        });
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({ error });
+    });
 };
 
 exports.likePost = async (req, res) => {

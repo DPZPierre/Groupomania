@@ -83,9 +83,7 @@ const Card = ({ post }) => {
                     alt="edit"
                   />
                   <form
-                    action="/"
                     encType="multipart/form-data"
-                    method="post"
                     onSubmit={updateItem}
                   >
                     <div className="card__container__post--icon">
