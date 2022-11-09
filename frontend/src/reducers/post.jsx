@@ -2,6 +2,7 @@ import {
   ADD_POST,
   DELETE_COMMENT,
   DELETE_POST,
+  ADD_COMMENT,
   EDIT_COMMENT,
   GET_POSTS,
   LIKE_POST,
@@ -18,6 +19,8 @@ export default function postsReducer(state = initialState, action) {
       newState.splice(0, 0, action.payload);
       return newState;
     case GET_POSTS:
+      return action.payload;
+    case ADD_COMMENT:
       return action.payload;
     case LIKE_POST:
       return state.map((post) => {

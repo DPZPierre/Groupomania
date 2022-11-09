@@ -32,14 +32,15 @@ export const addPost = (data) => {
         'content-type': 'multipart/form-data',
       },
     }).then((res) => {
+      console.log(res.data)
       dispatch({ type: ADD_POST, payload: res.data });
     });
   };
 };
 
 export const likePost = (postId, userId) => {
-  return (dispatch) => {
-    return axios({
+  return async (dispatch) => {
+    return await axios({
       method: "patch",
       url: `http://localhost:3000/api/post/like/${postId}`,
       data: { id: userId },
@@ -85,7 +86,7 @@ export const deletePost = (postId) => {
       method: "delete",
       url: `http://localhost:3000/api/post/${postId}`,
     })
-      .then((res) => {
+      .then(() => {
         dispatch({ type: DELETE_POST, payload: { postId } });
       })
       .catch((err) => console.log(err));
@@ -99,7 +100,7 @@ export const addComment = (postId, commenterId, text) => {
       url: `http://localhost:3000/api/post/comment-post/${postId}`,
       data: { commenterId, text },
     })
-      .then((res) => {
+      .then(() => {
         dispatch({ type: ADD_COMMENT, payload: { postId } });
       })
       .catch((err) => console.log(err));

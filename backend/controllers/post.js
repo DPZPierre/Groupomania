@@ -56,16 +56,6 @@ exports.updatePost = async (req, res) => {
     }
   }
 
-  // if (newPictureUrl && post.picture) {
-  //   const filename = post.picture.split("/images/")[1];
-  //   fs.unlink(`images/${filename}`, (error) => {
-  //     if (error) console.log(error);
-  //     else {
-  //       console.log(`Deleted file: images/${filename}`);
-  //     }
-  //   });
-  // }
-
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);
 
