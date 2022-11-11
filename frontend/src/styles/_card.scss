@@ -93,6 +93,7 @@
     }
     .card__container__post__update__button__update__delete {
       display: flex;
+      position: relative;
       justify-content: flex-end;
       padding: 0 10px;
       margin-top: 10px;
@@ -110,7 +111,7 @@
       width: 15px;
       height: 15px;
       position: absolute;
-      transform: translate(-8px, -6px);
+      transform: translate(-4px, 60px);
       opacity: 0;
       cursor: pointer;
 

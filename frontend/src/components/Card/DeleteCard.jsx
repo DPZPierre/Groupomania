@@ -7,7 +7,9 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons"
 const DeleteCard = (props) => {
   const dispatch = useDispatch();
 
-  const deleteQuote = () => dispatch(deletePost(props.id));
+  const deleteQuote = () => {
+    dispatch(deletePost(props.id));  
+  }
 
   return (
     <div

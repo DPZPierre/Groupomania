@@ -53,4 +53,11 @@
                 transform: translate(3px, 5px);
                 cursor: pointer;
              }
+             &__upload--update {
+                position: absolute;
+                height: 24px;
+                width: 24px;
+                transform: translate(3px, 70px);
+                cursor: pointer;
+             }
   }

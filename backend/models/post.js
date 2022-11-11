@@ -24,6 +24,7 @@ const postSchema = new mongoose.Schema(
           commenterId: String,
           text: String,
           timestamp: Number,
+          commenterEmail: String,
         },
       ],
       required: true,

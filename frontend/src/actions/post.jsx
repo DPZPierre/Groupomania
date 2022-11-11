@@ -32,7 +32,6 @@ export const addPost = (data) => {
         'content-type': 'multipart/form-data',
       },
     }).then((res) => {
-      console.log(res.data)
       dispatch({ type: ADD_POST, payload: res.data });
     });
   };

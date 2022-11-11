@@ -88,7 +88,7 @@ const Card = ({ post }) => {
                   >
                     <div className="card__container__post--icon">
                       <FontAwesomeIcon
-                        className="icon__upload"
+                        className="icon__upload--update"
                         icon={faUpload}
                         alt="upload icon"
                       />

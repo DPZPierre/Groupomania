@@ -11,9 +11,9 @@ const role = mongoose.Schema({
         type: String,
         lowercase: true,
         trim: true,
-        enum:["read","write"],
+        enum:["read","write", "delete"],
         set() {
-            if (this.type === "admin") return ["read", "write"]
+            if (this.type === "admin") return ["read", "write", "delete"]
             return ["read"]
         }
     }]

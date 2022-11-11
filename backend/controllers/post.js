@@ -33,7 +33,6 @@ exports.createPost = async (req, res) => {
 exports.updatePost = async (req, res) => {
   let newPictureUrl;
   let post = await PostModel.findOne({ ObjectID: req.params.id });
-  console.log(req.file);
   if (req.file) {
     newPictureUrl = `http://localhost:3000/images/${
       req.file ? req.file.filename : ""
@@ -151,6 +150,7 @@ exports.removeLikePost = async (req, res) => {
 };
 
 exports.commentPost = (req, res) => {
+  console.log(req.body)
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);
 
@@ -163,6 +163,7 @@ exports.commentPost = (req, res) => {
             commenterId: req.body.commenterId,
             text: req.body.text,
             timestamp: new Date().getTime(),
+            commenterEmail: req.body.email,
           },
         },
       },

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addComment, getPosts } from "../../actions/post";
-import { timestampParser } from "../Utils";
+import { isEmpty, timestampParser } from "../Utils";
 import EditDeleteComment from "./EditDeleteComment";
 
 const CardComments = ({ post }) => {
   const [text, setText] = useState("");
   const userData = useSelector((state) => state.user);
+  const usersData = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
   const handleComment = (e) => {
@@ -33,7 +34,12 @@ const CardComments = ({ post }) => {
           >
             <div className="comment__container__header">
               <p className="comment__container__header--email">
-                {userData.email}
+              {!isEmpty(usersData[0]) &&
+                      usersData.map((user) => {
+                        if (user._id === comment.commenterId)
+                          return user.email;
+                        else return null;
+                      })}
               </p>
               <span className="comment__container__header--date">
                 {timestampParser(comment.timestamp)}
@@ -49,6 +55,7 @@ const CardComments = ({ post }) => {
           <input
             name="text"
             id="text"
+            aria-label="commentaire"
             onChange={(e) => setText(e.target.value)}
             value={text}
             placeholder="Laisser un commentaire"

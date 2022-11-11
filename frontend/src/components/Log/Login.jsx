@@ -23,7 +23,6 @@ const Login = () => {
       },
     })
       .then((response) => {
-        console.log(response)
         if (response.data.errors) {
           emailError.innerHTML = response.data.errors.email;
           passwordError.innerHTML = response.data.errors.password;
