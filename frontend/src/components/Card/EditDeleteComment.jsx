@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteComment, editComment } from "../../actions/post";
 import { UidContext } from "../AppContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,6 +12,7 @@ const EditDeleteComment = ({ comment, postId }) => {
   const [text, setText] = useState("");
   const uid = useContext(UidContext);
   const dispatch = useDispatch();
+  const userData = useSelector((state) => state.user);
 
   const handleEdit = (e) => {
     e.preventDefault();
@@ -23,18 +24,19 @@ const EditDeleteComment = ({ comment, postId }) => {
     }
   };
 
+
   const handleDelete = () => dispatch(deleteComment(postId, comment._id));
 
 
   useEffect(() => {
     const checkAuthor = () => {
-      if (uid === comment.commenterId) {
-        setIsAuthor(true);
+      if (uid === comment.commenterId || userData.role === "6356c63ab58b610a31d49a6b" ) {
+        setIsAuthor(true); 
       }
     };
     checkAuthor();
-  }, [uid, comment.commenterId]);
-
+  }, [uid, comment.commenterId, userData.role]);
+  
   return (
     <div className="edit__comment">
       {isAuthor && edit === false && (

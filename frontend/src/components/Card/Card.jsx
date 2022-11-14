@@ -16,6 +16,7 @@ const Card = ({ post }) => {
   const [textUpdate, setTextUpdate] = useState(null);
   const [pictureUpdate, setPictureUpdate] = useState(null);
   const [showComments, setShowComments] = useState(false);
+  const [isAuthor, setIsAuthor] = useState(false);
   const usersData = useSelector((state) => state.users);
   const userData = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -35,6 +36,17 @@ const Card = ({ post }) => {
     }
     setIsUpdated(false);
   };
+
+
+
+  useEffect(() => {
+    const checkAuthor = () => {
+      if (userData._id === post.userId || userData.role === "6356c63ab58b610a31d49a6b" ) {
+        setIsAuthor(true); 
+      }
+    };
+    checkAuthor();
+  }, [userData._id, post.userId, userData.role]);
 
   return (
     <li className="card" key={post._id}>
@@ -74,7 +86,7 @@ const Card = ({ post }) => {
             {post.picture && (
               <img src={post.picture} alt="card-pic" className="card-pic" />
             )}
-            {userData._id === post.userId && (
+            {isAuthor && (
               <div className="card__container__post__update__button__update__delete">
                 <div onClick={() => setIsUpdated(!isUpdated)}>
                   <FontAwesomeIcon

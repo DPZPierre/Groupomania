@@ -22,10 +22,10 @@ const NewPostForm = () => {
     setPicture(event.target.files[0]);
   };
 
-  const handlePost = async (e) => {
+  const handlePost =(e) => {
     e.preventDefault();
     if (message || picture) {
-      await dispatch(addPost({ userId: userData._id, message, picture }));
+      dispatch(addPost({ userId: userData._id, message, picture }));
       cancelPost();
     }
     if (!message) {
