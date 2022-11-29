@@ -24,9 +24,7 @@ const EditDeleteComment = ({ comment, postId }) => {
     }
   };
 
-
   const handleDelete = () => dispatch(deleteComment(postId, comment._id));
-
 
   useEffect(() => {
     const checkAuthor = () => {
@@ -41,7 +39,7 @@ const EditDeleteComment = ({ comment, postId }) => {
     <div className="edit__comment">
       {isAuthor && edit === false && (
         <span onClick={() => setEdit(!edit)}>
-          <FontAwesomeIcon icon={faPen} className="edit__comment--icon" alt="edit-comment" />
+          <FontAwesomeIcon icon={faPen} className="icon__pen" alt="edit-comment" />
         </span>
       )}
       {isAuthor && edit && (
@@ -65,7 +63,7 @@ const EditDeleteComment = ({ comment, postId }) => {
                 }
               }}
             >
-              <FontAwesomeIcon className="icon" icon={faTrash} alt="delete" />
+              <FontAwesomeIcon className="icon__trash" icon={faTrash} alt="delete" />
             </span>
             <button className="btn__update" onClick={handleEdit}>
               Valider modification

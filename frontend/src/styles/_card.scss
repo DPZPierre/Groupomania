@@ -6,17 +6,17 @@
   margin: 20px;
   padding: 10px 0;
   border-radius: 20px;
-  margin: 8px auto;
+  margin: 15px auto;
   position: relative;
   min-height: 100px;
-  box-shadow: 1px 1px 20px rgba(120, 120, 120, 0.3);
+  box-shadow: 1px 1px 8px rgba(120, 120, 120, 0.3);
   @media screen and (max-width: 792px) {
     width: 95%;
   
 }
 
   @media screen and (max-width: 440px) {
-    padding-top: 26px;
+    padding-top: 10px;
   }
 
   &--spinner {
@@ -36,12 +36,10 @@
       border-bottom: 2px solid #FFD7D7;
 
       @media screen and (max-width: 590px) {
-        padding: 12px 0 20px 14px;
-       
-        
+        padding: 6px 0 10px 7px;
       }
 
-      @media screen and (max-width: 750px) {
+      @media screen and (max-width: 450px) {
         flex-direction: column;
       }
       &__date {
@@ -57,19 +55,6 @@
           margin: 0px 0 -10px;
           padding: 0;
         }
-
-        img {
-          padding: 5px;
-          cursor: pointer;
-          transition: 0.15s;
-          box-shadow: none;
-          height: 28px;
-          width: 28px;
-
-          &:hover {
-            transform: scale(1.2) translate(0px, 0px);
-          }
-        }
       }
     }
     &__post {
@@ -80,7 +65,7 @@
       justify-content: center;
 
       @media screen and (max-width: 440px) {
-        margin-top: -18px;
+        margin-top: 5px;
       }
     }
     &__post__update {
@@ -128,17 +113,6 @@
       padding: 12px 10px;
       border-top: 2px solid $color2;
       margin-top: 10px;
-
-      img {
-        height: 22px;
-        width: 22px;
-        cursor: pointer;
-        transition: 0.2s;
-
-        &:hover {
-          transform: scale(1.2);
-        }
-      }
     }
     &__footer--commentIcon {
       color: $color3;
@@ -147,7 +121,7 @@
       cursor: pointer;
 
       span {
-        font-size: 1.02rem;
+        font-size: 18px;
         position: absolute;
         transform: translate(29px, 2px);
       }

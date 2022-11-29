@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addComment, getPosts } from "../../actions/post";
+import { addComment } from "../../actions/post";
 import { isEmpty, timestampParser } from "../Utils";
 import EditDeleteComment from "./EditDeleteComment";
 
@@ -15,8 +15,6 @@ const CardComments = ({ post }) => {
 
     if (text) {
       dispatch(addComment(post._id, userData._id, text, userData.email))
-        .then(() => dispatch(getPosts()))
-        .then(() => setText(""));
     }
   };
 

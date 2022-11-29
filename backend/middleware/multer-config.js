@@ -18,8 +18,6 @@ const storage = multer.diskStorage({
   }
 });
 
-// console.log(storage)
-
 module.exports = multer({
   storage: storage,
   fileFilter: (req, file, cb) => {

@@ -37,8 +37,6 @@ const Card = ({ post }) => {
     setIsUpdated(false);
   };
 
-
-
   useEffect(() => {
     const checkAuthor = () => {
       if (userData._id === post.userId || userData.role === "6356c63ab58b610a31d49a6b" ) {

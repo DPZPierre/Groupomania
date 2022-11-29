@@ -10,7 +10,6 @@ router.delete('/:id', postsCtrl.deletePost);
 router.patch('/like/:id', postsCtrl.likePost);
 router.delete('/dislike/:id', postsCtrl.removeLikePost);
 
-
 router.patch('/comment-post/:id', postsCtrl.commentPost);
 router.patch('/edit-comment-post/:id', postsCtrl.editCommentPost);
 router.patch('/delete-comment-post/:id', postsCtrl.deleteCommentPost)

@@ -4,7 +4,6 @@ import { likePost, removeLike } from "../../actions/post";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 
-
 const LikeButton = ({ post }) => {
   const userId = useSelector((state) => state.user._id);
   const dispatch = useDispatch();

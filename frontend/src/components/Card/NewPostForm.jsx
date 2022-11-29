@@ -9,7 +9,6 @@ const NewPostForm = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [message, setMessage] = useState("");
   const [picture, setPicture] = useState(null);
-
   const userData = useSelector((state) => state.user);
   const error = useSelector((state) => state.errors);
   const dispatch = useDispatch();
@@ -22,7 +21,7 @@ const NewPostForm = () => {
     setPicture(event.target.files[0]);
   };
 
-  const handlePost =(e) => {
+  const handlePost = (e) => {
     e.preventDefault();
     if (message || picture) {
       dispatch(addPost({ userId: userData._id, message, picture }));
@@ -61,7 +60,7 @@ const NewPostForm = () => {
                 </div>
                 <div className="content">
                   <p>{message}</p>
-                  <img className="post__picture" src={picture} alt="" />
+                  <img className="content__picture" src={picture} alt="" />
                 </div>
               </div>
             ) : null}

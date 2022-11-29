@@ -12,12 +12,15 @@ exports.readPost = (req, res) => {
 };
 
 exports.createPost = async (req, res) => {
+
   const newPost = new postModel({
     userId: req.body.userId,
     message: req.body.message,
-    picture: `http://localhost:3000/images/${
-      req.file ? req.file.filename : ""
-    }`,
+    picture: 
+    req.file == null ? "" : `http://localhost:3000/images/${req.file.filename}`,
+    // `http://localhost:3000/images/${
+    //   req.file ? req.file.filename : ""
+    // }`,
     likers: [],
     comments: [],
   });
@@ -150,7 +153,6 @@ exports.removeLikePost = async (req, res) => {
 };
 
 exports.commentPost = (req, res) => {
-  console.log(req.body)
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);
 

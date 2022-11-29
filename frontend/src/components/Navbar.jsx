@@ -10,7 +10,7 @@ const Navbar = () => {
             <div className="nav__container">
                 {/* <NavLink to="/">Home</NavLink> */}
                 <div className="nav__container__logo">
-                 <img src={ Logo } alt="logo groupomania" />
+                 <img className= "nav__container__logo--img" src={ Logo } alt="logo groupomania" />
                  <Logout/>
                 </div>
              

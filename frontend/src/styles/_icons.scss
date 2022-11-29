@@ -1,18 +1,18 @@
 .icon{
     &__logout{
       position: absolute;
-      bottom: 0;
-      right: 60px;
-      font-size: 22px;
+      top: 0;
+      right: 30px;
+      font-size: 18px;
       color: white;
       cursor: pointer;
         &--icon{
         color: white;
         position: absolute;
         justify-content: flex-end;
-        bottom: 0;
-        right: 25px;
-        font-size: 30px;
+        top: 2px;
+        right: 5px;
+        font-size: 20px;
         cursor: pointer;
         }
     }
@@ -50,6 +50,7 @@
                 position: absolute;
                 height: 24px;
                 width: 24px;
+                color: $color3;
                 transform: translate(3px, 5px);
                 cursor: pointer;
              }
@@ -57,6 +58,7 @@
                 position: absolute;
                 height: 24px;
                 width: 24px;
+                color: $color3;
                 transform: translate(3px, 70px);
                 cursor: pointer;
              }
