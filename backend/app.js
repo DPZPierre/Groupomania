@@ -9,6 +9,7 @@ const userRoutes = require('./routes/user');
 const postRoutes = require('./routes/post');
 const {checkUser, requireAuth} = require('./middleware/auth');
 const rolesRoute = require('./routes/role');
+require('dotenv').config({path: './.env'});
 
 const corsOptions ={
   origin:'http://localhost:3001', 
@@ -18,7 +19,7 @@ const corsOptions ={
 
 mongoose
   .connect(
-    "mongodb+srv://Ramuchoi:mezaJp7X@cluster0.wtjpcil.mongodb.net/?retryWrites=true&w=majority",
+    "mongodb+srv://" + process.env.DB_USER + "@cluster0.wtjpcil.mongodb.net/?retryWrites=true&w=majority",
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => console.log("Connexion à MongoDB réussie !"))

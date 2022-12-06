@@ -5,6 +5,7 @@ $color2: #ffd7d7;
 $color3: #4e5166;
 $black1: #121111;
 $white: #f0eaea;
+$white2:#ffff;
 $grey: #5f5f5f;
 $shadow: 0 3px 20px rgba(0, 0, 0, 0.356);
 
@@ -77,3 +78,8 @@ textarea {
   color: $color1;
   font-size: 20px;
 }
+
+.password__error {
+  color: $color1;
+}
+

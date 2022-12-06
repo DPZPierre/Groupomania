@@ -4,10 +4,13 @@
       top: 0;
       right: 30px;
       font-size: 18px;
-      color: white;
+      color: $white2;
       cursor: pointer;
+      @media screen and (max-width: 600px) {
+        font-size: 0;
+      }
         &--icon{
-        color: white;
+        color: $white2;
         position: absolute;
         justify-content: flex-end;
         top: 2px;

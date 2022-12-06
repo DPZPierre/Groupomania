@@ -14,7 +14,7 @@ const CardComments = ({ post }) => {
     e.preventDefault();
 
     if (text) {
-      dispatch(addComment(post._id, userData._id, text, userData.email))
+      dispatch(addComment(post._id, userData._id, text, userData.email));
     }
   };
 
