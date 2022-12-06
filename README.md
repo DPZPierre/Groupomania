@@ -10,7 +10,7 @@ Pour le backend :
 
     Placez vous dans le dossier backend avec la commande cd backend
     Initialisez les packages via la commande npm install
-    Lancez le backend en tapant ensuite nodemon server
+    Lancez le backend en tapant ensuite la commande nodemon server
     
     
 Pour créer un profil :
