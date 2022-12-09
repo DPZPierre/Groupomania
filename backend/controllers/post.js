@@ -18,9 +18,6 @@ exports.createPost = async (req, res) => {
     message: req.body.message,
     picture: 
     req.file == null ? "" : `http://localhost:3000/images/${req.file.filename}`,
-    // `http://localhost:3000/images/${
-    //   req.file ? req.file.filename : ""
-    // }`,
     likers: [],
     comments: [],
   });

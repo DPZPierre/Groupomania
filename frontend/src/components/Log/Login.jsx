@@ -8,10 +8,7 @@ const Login = () => {
   const handleLogin = async(e) => {
     e.preventDefault();
     const loginError = document.querySelector(".login.error");
- 
-
     loginError.innerHTML = "";
-
 
     await axios({
       method: "post",

@@ -15,6 +15,7 @@ img {
     justify-content: center;
     margin: auto;
     @media screen and (max-width: 492px) { 
+        width: 50%;
         align-items: center;
         padding-right: 18px;     
     }

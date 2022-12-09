@@ -23,13 +23,13 @@ exports.login = async (req, res) => {
   User.findOne({ email: req.body.email })
     .then((user) => {
       if (!user) {
-        return res.status(401).json({ error: "User unknown" });
+        return res.status(401).json({ error: "Utilisateur inconnu" });
       }
       bcrypt
         .compare(req.body.password, user.password)
         .then((valid) => {
           if (!valid) {
-            return res.status(401).json({ error: "Invalid password" });
+            return res.status(401).json({ error: "Mot de passe erroné" });
           } else {
             const maxAge = 3 * 24 * 60 * 60 * 1000;
             const token = jwt.sign({ id: user.id }, "RANDOM_TOKEN_SECRET", {

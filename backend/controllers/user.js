@@ -4,9 +4,8 @@ const ObjectID = require("mongoose").Types.ObjectId;
 exports.getAllUsers = async (req, res) => {
     const users = await User.find().select("-password");
     res.status(200).json(users);
-  };
+};
   
-
 exports.userInfo = (req, res) => {
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);
