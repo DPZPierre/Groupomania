@@ -2,15 +2,15 @@
 
 Pour le frontend :
 
-    Placez vous dans le dossier frontend
+    Placez vous dans le dossier frontend avec la commande cd frontend
     Dans le terminal exécutez la commande npm install
     Lancez ensuite la commande npm start
 
 Pour le backend :
 
-    Placez vous dans le dossier backend
+    Placez vous dans le dossier backend avec la commande cd backend
     Initialisez les packages via la commande npm install
-    Lancez le backend en tapant ensuite nodemon server
+    Lancez le backend en tapant ensuite la commande nodemon server
     
     
 Pour créer un profil :
